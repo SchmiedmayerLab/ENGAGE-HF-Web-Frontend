@@ -142,7 +142,7 @@ export const Medications = ({
             <TableRow isHoverable={false}>
               <TableCell>Medication</TableCell>
               <TableCell>Drug</TableCell>
-              <TableCell className="w-[130px]">Quantity</TableCell>
+              <TableCell className="w-[160px]">Quantity</TableCell>
               <TableCell className="w-[190px]">Frequency</TableCell>
               <TableCell className="w-[190px]">Daily dosage</TableCell>
               <TableCell className="w-[120px]">Instructions</TableCell>
@@ -209,6 +209,7 @@ export const Medications = ({
                       name={nestedKey("drug")}
                       render={({ field }) => (
                         <Select
+                          search
                           disabled={!medicationValue.medication}
                           onValueChange={(id) => {
                             const medication = medicationsMap.get(id);
@@ -266,6 +267,11 @@ export const Medications = ({
                       render={({ field }) => (
                         <Select
                           {...field}
+                          search
+                          create={{
+                            render: (value) => `Create "${value} tbl."`,
+                          }}
+                          formatValue={(value) => `${value} tbl.`}
                           disabled={!isDrugSelected}
                           onValueChange={(value) =>
                             field.onChange(Number(value))
@@ -273,19 +279,9 @@ export const Medications = ({
                           value={String(field.value)}
                         >
                           <SelectTrigger>
-                            <SelectValue placeholder="Drug" />
+                            <SelectValue placeholder="Quantity" />
                           </SelectTrigger>
                           <SelectContent>
-                            {!quantityOptions.some(
-                              (option) => option.value === field.value,
-                            ) && (
-                              <SelectItem
-                                key={field.value}
-                                value={String(field.value)}
-                              >
-                                {field.value} tbl.
-                              </SelectItem>
-                            )}
                             {quantityOptions.map((option) => (
                               <SelectItem
                                 key={option.value}
@@ -307,6 +303,8 @@ export const Medications = ({
                       render={({ field }) => (
                         <Select
                           {...field}
+                          search
+                          formatValue={(value) => `${value} times a day`}
                           disabled={!isDrugSelected}
                           onValueChange={(value) =>
                             field.onChange(Number(value))
@@ -317,16 +315,6 @@ export const Medications = ({
                             <SelectValue placeholder="Frequency" />
                           </SelectTrigger>
                           <SelectContent>
-                            {!timesPerDayOptions.some(
-                              (option) => option.value === field.value,
-                            ) && (
-                              <SelectItem
-                                key={field.value}
-                                value={String(field.value)}
-                              >
-                                {field.value} times a day
-                              </SelectItem>
-                            )}
                             {timesPerDayOptions.map((option) => (
                               <SelectItem
                                 key={option.value}

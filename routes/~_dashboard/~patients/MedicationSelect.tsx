@@ -11,7 +11,6 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@stanfordspezi/spezi-web-design-system/components/Select";
@@ -21,20 +20,22 @@ import { type MedicationsData } from "@/routes/~_dashboard/~patients/utils";
 
 interface MedicationSelectProps
   extends MedicationsData,
-    ComponentProps<typeof Select> {}
+    Omit<ComponentProps<typeof Select>, "children"> {}
 
 export const MedicationSelect = ({
   medications,
   ...props
 }: MedicationSelectProps) => (
-  <Select {...props}>
+  <Select search {...props}>
     <SelectTrigger>
       <SelectValue placeholder="Medication" />
     </SelectTrigger>
     <SelectContent>
       {medications.map((medicationClass) => (
-        <SelectGroup key={medicationClass.id}>
-          <SelectLabel>{parseLocalizedText(medicationClass.name)}</SelectLabel>
+        <SelectGroup
+          key={medicationClass.id}
+          heading={parseLocalizedText(medicationClass.name)}
+        >
           {medicationClass.medications.map((medication) => (
             <SelectItem value={medication.id} key={medication.id}>
               {medication.name}

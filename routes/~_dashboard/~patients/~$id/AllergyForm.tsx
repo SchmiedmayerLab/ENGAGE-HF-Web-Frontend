@@ -75,7 +75,7 @@ export const AllergyForm = ({
         name="type"
         label="Type"
         render={({ field }) => (
-          <Select onValueChange={field.onChange} {...field}>
+          <Select search onValueChange={field.onChange} {...field}>
             <SelectTrigger>
               <SelectValue placeholder="Type" />
             </SelectTrigger>

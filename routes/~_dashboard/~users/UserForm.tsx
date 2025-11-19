@@ -106,6 +106,7 @@ export const UserForm = ({
           render={({ field }) => (
             <Select
               {...field}
+              search
               onValueChange={field.onChange}
               value={field.value ?? undefined}
             >
@@ -129,6 +130,7 @@ export const UserForm = ({
         label="Type"
         render={({ field }) => (
           <Select
+            search
             onValueChange={field.onChange}
             {...field}
             disabled={authUser.auth.uid === userInfo?.uid}
