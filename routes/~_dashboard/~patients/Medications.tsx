@@ -72,7 +72,10 @@ const formSchema = z.object({
       instructions: z.string(),
       medication: z.string({ error: "Medication is required" }),
       drug: z.string({ error: "Drug is required" }),
-      quantity: z.number().min(0).max(10),
+      quantity: z
+        .number({ error: "Quantity must be a valid integer" })
+        .gt(0, "Quantity must be greater than 0")
+        .max(10, "Maximum quantity is 10 tbl. per day"),
       frequencyPerDay: z.number().min(0),
     }),
   ),
