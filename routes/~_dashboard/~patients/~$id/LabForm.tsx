@@ -89,6 +89,7 @@ export const LabForm = ({ observation, onSubmit }: LabFormProps) => {
         label="Type"
         render={({ field }) => (
           <Select
+            search
             onValueChange={(type) => {
               field.onChange(type);
               form.setValue(
@@ -119,7 +120,7 @@ export const LabForm = ({ observation, onSubmit }: LabFormProps) => {
         name="unit"
         label="Unit"
         render={({ field }) => (
-          <Select {...field} key={formType}>
+          <Select {...field} search key={formType}>
             <SelectTrigger>
               <SelectValue placeholder="Unit" />
             </SelectTrigger>

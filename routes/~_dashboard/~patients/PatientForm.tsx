@@ -162,7 +162,7 @@ export const PatientForm = ({
         name="clinician"
         label="Clinician"
         render={({ field }) => (
-          <Select onValueChange={field.onChange} {...field}>
+          <Select search onValueChange={field.onChange} {...field}>
             <SelectTrigger>
               <SelectValue placeholder="Clinician" />
             </SelectTrigger>

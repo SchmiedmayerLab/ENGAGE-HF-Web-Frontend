@@ -49,6 +49,7 @@ const ObservationTypeFilter = ({ table }: ObservationTypeFilterProps) => {
     <div className="flex items-center gap-3">
       <span className="shrink-0 text-sm font-medium">Type</span>
       <Select
+        search
         value={currentFilter ?? "All"}
         onValueChange={(value) => {
           table.setColumnFilters((filters) => {
