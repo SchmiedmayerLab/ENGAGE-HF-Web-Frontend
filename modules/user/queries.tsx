@@ -58,7 +58,7 @@ export const userOrganizationQueryOptions = () =>
     queryKey: ["userOrganizations"],
     queryFn: async () => {
       const { user } = await getCurrentUser();
-      let organizations: Array<Organization & { id: string }> = [];
+      let organizations: Organization[] = [];
       if (user.type === UserType.admin) {
         organizations = await getDocsData(refs.organizations());
       } else if (user.organization) {
