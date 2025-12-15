@@ -46,6 +46,7 @@ export const getObservationData = (payload: LabFormSchema): FHIRObservation => {
       code: unit.code,
     },
     effectiveDateTime: payload.effectiveDateTime.toString(),
+    derivedFrom: null,
   };
 };
 

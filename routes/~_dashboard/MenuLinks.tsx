@@ -10,15 +10,13 @@ import { UserType } from "@stanfordbdhg/engagehf-models";
 import { MenuItem } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
 import { useLocation } from "@tanstack/react-router";
 import { Home, Users, Contact, Bell, MonitorCog } from "lucide-react";
+import { useIsUserRole } from "@/modules/firebase/UserProvider";
 import { useHasUnreadNotification } from "@/modules/notifications/queries";
 import { routes } from "@/modules/routes";
 
-interface MenuLinksProps {
-  userType: UserType;
-}
-
-export const MenuLinks = ({ userType }: MenuLinksProps) => {
+export const MenuLinks = () => {
   const location = useLocation();
+  const { isUserRole } = useIsUserRole();
 
   const hrefProps = (href: string, exact = false) => ({
     href,
@@ -27,8 +25,6 @@ export const MenuLinks = ({ userType }: MenuLinksProps) => {
   });
 
   const { hasUnreadNotification } = useHasUnreadNotification();
-
-  const isRole = (roles: UserType[]) => roles.includes(userType);
 
   return (
     <>
@@ -43,7 +39,7 @@ export const MenuLinks = ({ userType }: MenuLinksProps) => {
         isHighlighted={hasUnreadNotification}
         icon={<Bell />}
       />
-      {isRole([UserType.admin, UserType.owner]) && (
+      {isUserRole([UserType.admin, UserType.owner]) && (
         <MenuItem
           {...hrefProps(routes.users.index)}
           label="Users"
@@ -55,7 +51,7 @@ export const MenuLinks = ({ userType }: MenuLinksProps) => {
         label="Patients"
         icon={<Contact />}
       />
-      {isRole([UserType.admin]) && (
+      {isUserRole([UserType.admin]) && (
         <MenuItem
           {...hrefProps(routes.admin)}
           label="Admin"

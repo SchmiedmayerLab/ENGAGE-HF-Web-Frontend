@@ -31,6 +31,8 @@ import {
   type UpdateStaticDataOutput,
   type DefaultSeedInput,
   type DefaultSeedOutput,
+  type ExportDataInputSchema,
+  type ExportDataOutputSchema,
 } from "@stanfordbdhg/engagehf-models";
 import { strategy } from "@stanfordspezi/spezi-web-design-system/utils/misc";
 import {
@@ -315,6 +317,10 @@ export const getCallables = (functions: Functions) => ({
   enableUser: httpsCallable<EnableUserInput, EnableUserOutput>(
     functions,
     "enableUser",
+  ),
+  exportData: httpsCallable<ExportDataInputSchema, ExportDataOutputSchema>(
+    functions,
+    "exportData",
   ),
 });
 

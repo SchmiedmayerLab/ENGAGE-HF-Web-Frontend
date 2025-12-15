@@ -6,6 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
+import { type UserType } from "@stanfordbdhg/engagehf-models";
 import { getUserInfo } from "@stanfordspezi/spezi-web-design-system/modules/auth";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "@/modules/firebase/app";
@@ -23,3 +24,9 @@ export const currentUserQueryOptions = () =>
   });
 
 export const useUser = () => useSuspenseQuery(currentUserQueryOptions()).data;
+
+export const useIsUserRole = () => {
+  const user = useUser();
+  const isUserRole = (roles: UserType[]) => roles.includes(user.user.type);
+  return { isUserRole };
+};
