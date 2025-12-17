@@ -7,9 +7,16 @@
 //
 
 import { UserType } from "@stanfordbdhg/engagehf-models";
+import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
+import {
+  base64ToBlob,
+  downloadFile,
+} from "@stanfordspezi/spezi-web-design-system/utils/file";
 import { queryOptions } from "@tanstack/react-query";
+import { kebabCase } from "es-toolkit";
 import { type Query, query, where } from "firebase/firestore";
-import { getCurrentUser, refs } from "@/modules/firebase/app";
+import { useState } from "react";
+import { callables, getCurrentUser, refs } from "@/modules/firebase/app";
 import { type Invitation, type User } from "@/modules/firebase/models";
 import { mapAuthData } from "@/modules/firebase/user";
 import { getDocsData } from "@/modules/firebase/utils";
@@ -19,6 +26,64 @@ import {
   parseAuthToUser,
   parseInvitationToUser,
 } from "@/modules/user/queries";
+
+export const useDownloadPatientData = () => {
+  const [isPending, setIsPending] = useState(false);
+
+  const mutateAsync = async ({
+    userId,
+    userName,
+  }: {
+    userId: string;
+    userName: string;
+  }) => {
+    setIsPending(true);
+    try {
+      const exportUserData = callables.exportData({ userId });
+      toast.promise(exportUserData, {
+        loading: `Downloading patient data for ${userName}...`,
+        success: `Patient data for ${userName} has been downloaded.`,
+        error: `Downloading patient data for ${userName} failed. Please try later.`,
+      });
+      const response = await exportUserData;
+      const blob = base64ToBlob(response.data.content, "application/zip");
+      downloadFile(blob, `user-data-${kebabCase(userName)}.zip`);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  return { isPending, mutateAsync };
+};
+
+export const useDownloadPatientHealthSummary = () => {
+  const [isPending, setIsPending] = useState(false);
+
+  const mutateAsync = async ({
+    userId,
+    userName,
+  }: {
+    userId: string;
+    userName: string;
+  }) => {
+    setIsPending(true);
+    try {
+      const exportHealthPromise = callables.exportHealthSummary({ userId });
+      toast.promise(exportHealthPromise, {
+        loading: `Generating health summary for ${userName}...`,
+        success: `Health summary for ${userName} has been downloaded.`,
+        error: `Generating health summary for ${userName} failed. Please try later.`,
+      });
+      const response = await exportHealthPromise;
+      const blob = base64ToBlob(response.data.content, "application/pdf");
+      downloadFile(blob, `health-summary-${kebabCase(userName)}.pdf`);
+    } finally {
+      setIsPending(false);
+    }
+  };
+
+  return { isPending, mutateAsync };
+};
 
 export const parsePatientsQueries = async ({
   patientsQuery,

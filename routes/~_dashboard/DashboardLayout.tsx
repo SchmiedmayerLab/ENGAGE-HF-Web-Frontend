@@ -22,8 +22,7 @@ interface DashboardLayoutProps
   extends Omit<DashboardLayoutPropsBase, "aside" | "mobile"> {}
 
 export const DashboardLayout = (props: DashboardLayoutProps) => {
-  const { user, auth } = useUser();
-  const role = user.type;
+  const { auth } = useUser();
   const userUI = <User user={getUserInfo(auth)} />;
 
   return (
@@ -38,7 +37,7 @@ export const DashboardLayout = (props: DashboardLayoutProps) => {
             <LogoType className="hidden h-auto! w-full! xl:block" />
           </Link>
           <nav className="mt-9 flex flex-col gap-1 xl:w-full">
-            <MenuLinks userType={role} />
+            <MenuLinks />
           </nav>
           {userUI}
         </>
@@ -46,7 +45,7 @@ export const DashboardLayout = (props: DashboardLayoutProps) => {
       mobile={
         <>
           <nav className="mt-9 flex flex-col gap-1 px-4">
-            <MenuLinks userType={role} />
+            <MenuLinks />
           </nav>
           {userUI}
         </>

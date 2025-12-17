@@ -8,22 +8,22 @@
 
 import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
 import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
-import { FileUser } from "lucide-react";
+import { Download } from "lucide-react";
 import { type ResourceType } from "@/modules/firebase/utils";
-import { useDownloadPatientHealthSummary } from "@/modules/user/patients";
+import { useDownloadPatientData } from "@/modules/user/patients";
 
-interface GenerateHealthSummaryProps {
+interface ExportUserDataProps {
   userId: string;
   userName: string;
   resourceType: ResourceType;
 }
 
-export const GenerateHealthSummary = ({
+export const ExportUserData = ({
   userId,
   resourceType,
   userName,
-}: GenerateHealthSummaryProps) => {
-  const downloadHealthSummary = useDownloadPatientHealthSummary();
+}: ExportUserDataProps) => {
+  const downloadPatientData = useDownloadPatientData();
 
   return (
     <Tooltip
@@ -34,12 +34,12 @@ export const GenerateHealthSummary = ({
         type="submit"
         variant="secondary"
         disabled={resourceType === "invitation"}
-        onClick={() => downloadHealthSummary.mutateAsync({ userId, userName })}
+        onClick={() => downloadPatientData.mutateAsync({ userId, userName })}
         className="disabled:pointer-events-auto"
-        isPending={downloadHealthSummary.isPending}
+        isPending={downloadPatientData.isPending}
       >
-        <FileUser />
-        Export Health Summary
+        <Download />
+        Export Data
       </Button>
     </Tooltip>
   );

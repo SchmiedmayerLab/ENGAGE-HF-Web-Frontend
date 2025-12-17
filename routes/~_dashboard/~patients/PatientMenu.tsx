@@ -7,15 +7,21 @@
 //
 
 import { deleteDoc } from "@firebase/firestore";
+import { UserType } from "@stanfordbdhg/engagehf-models";
 import { RowDropdownMenu } from "@stanfordspezi/spezi-web-design-system/components/DataTable";
 import { DropdownMenuItem } from "@stanfordspezi/spezi-web-design-system/components/DropdownMenu";
 import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";
 import { ConfirmDeleteDialog } from "@stanfordspezi/spezi-web-design-system/molecules/ConfirmDeleteDialog";
 import { useOpenState } from "@stanfordspezi/spezi-web-design-system/utils/useOpenState";
 import { Link, useRouter } from "@tanstack/react-router";
-import { Pencil, Trash } from "lucide-react";
+import { Pencil, Trash, DownloadIcon, FileUser } from "lucide-react";
 import { callables, docRefs } from "@/modules/firebase/app";
+import { useIsUserRole } from "@/modules/firebase/UserProvider";
 import { routes } from "@/modules/routes";
+import {
+  useDownloadPatientData,
+  useDownloadPatientHealthSummary,
+} from "@/modules/user/patients";
 import { ToggleUserDisabled } from "@/modules/user/ToggleUserDisabled";
 import { type Patient } from "@/routes/~_dashboard/~patients/~index";
 
@@ -24,8 +30,11 @@ interface PatientMenuProps {
 }
 
 export const PatientMenu = ({ patient }: PatientMenuProps) => {
+  const { isUserRole } = useIsUserRole();
   const router = useRouter();
   const deleteConfirm = useOpenState();
+  const downloadPatientData = useDownloadPatientData();
+  const downloadPatientHealthSummary = useDownloadPatientHealthSummary();
 
   const handleDelete = async () => {
     if (patient.resourceType === "user") {
@@ -63,6 +72,33 @@ export const PatientMenu = ({ patient }: PatientMenuProps) => {
           Delete
         </DropdownMenuItem>
         <ToggleUserDisabled user={patient} />
+        {patient.resourceType === "user" &&
+          isUserRole([UserType.admin, UserType.owner]) && (
+            <DropdownMenuItem
+              onClick={() =>
+                downloadPatientData.mutateAsync({
+                  userId: patient.resourceId,
+                  userName: patient.displayName ?? patient.resourceId,
+                })
+              }
+            >
+              <DownloadIcon />
+              Export Data
+            </DropdownMenuItem>
+          )}
+        {patient.resourceType === "user" && (
+          <DropdownMenuItem
+            onClick={() =>
+              downloadPatientHealthSummary.mutateAsync({
+                userId: patient.resourceId,
+                userName: patient.displayName ?? patient.resourceId,
+              })
+            }
+          >
+            <FileUser />
+            Export Health Summary
+          </DropdownMenuItem>
+        )}
       </RowDropdownMenu>
     </>
   );

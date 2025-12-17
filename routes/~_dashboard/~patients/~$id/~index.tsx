@@ -27,6 +27,7 @@ import {
   getMedicationRequestData,
   getMedicationRequestMedicationIds,
 } from "@/modules/firebase/medication";
+import { useIsUserRole } from "@/modules/firebase/UserProvider";
 import {
   getDocDataOrThrow,
   getDocsData,
@@ -43,17 +44,18 @@ import {
   type PatientFormSchema,
 } from "@/routes/~_dashboard/~patients/PatientForm";
 import {
+  formatBirthDate,
   getAllergiesData,
   getAppointmentsData,
   getFormProps,
   getLabsData,
-  getMedicationsData,
   getMeasurementsData,
+  getMedicationsData,
   getPatientInfo,
-  formatBirthDate,
 } from "@/routes/~_dashboard/~patients/utils";
 import { Allergies } from "@/routes/~_dashboard/~patients/~$id/Allergies";
 import { Appointments } from "@/routes/~_dashboard/~patients/~$id/Appointments";
+import { ExportUserData } from "@/routes/~_dashboard/~patients/~$id/ExportUserData";
 import { GenerateHealthSummary } from "@/routes/~_dashboard/~patients/~$id/GenerateHealthSummary";
 import { Labs } from "@/routes/~_dashboard/~patients/~$id/Labs";
 import { Measurements } from "@/routes/~_dashboard/~patients/~$id/Measurements";
@@ -95,6 +97,7 @@ export enum PatientPageTab {
 
 const PatientPage = () => {
   const router = useRouter();
+  const { isUserRole } = useIsUserRole();
   const { tab } = Route.useSearch();
   const {
     userId,
@@ -200,11 +203,20 @@ const PatientPage = () => {
         />
       }
       actions={
-        <GenerateHealthSummary
-          userId={userId}
-          resourceType={resourceType}
-          userName={userName}
-        />
+        <div className="flex gap-2">
+          {isUserRole([UserType.admin, UserType.owner]) && (
+            <ExportUserData
+              userId={userId}
+              resourceType={resourceType}
+              userName={userName}
+            />
+          )}
+          <GenerateHealthSummary
+            userId={userId}
+            resourceType={resourceType}
+            userName={userName}
+          />
+        </div>
       }
     >
       <title>{getTitle(`Edit ${userName}`)}</title>
