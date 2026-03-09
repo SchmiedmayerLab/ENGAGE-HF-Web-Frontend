@@ -97,16 +97,16 @@ const PatientsUserIdHealthSummaryShareCodeIdIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof DashboardIndexRoute
-  '/sign-in': typeof SignInIndexRoute
-  '/admin': typeof DashboardAdminIndexRoute
-  '/notifications': typeof DashboardNotificationsIndexRoute
-  '/patients': typeof DashboardPatientsIndexRoute
-  '/users': typeof DashboardUsersIndexRoute
+  '/sign-in/': typeof SignInIndexRoute
+  '/admin/': typeof DashboardAdminIndexRoute
+  '/notifications/': typeof DashboardNotificationsIndexRoute
+  '/patients/': typeof DashboardPatientsIndexRoute
+  '/users/': typeof DashboardUsersIndexRoute
   '/patients/invite': typeof DashboardPatientsInviteRoute
   '/users/$id': typeof DashboardUsersIdRoute
   '/users/invite': typeof DashboardUsersInviteRoute
-  '/patients/$id': typeof DashboardPatientsIdIndexRoute
-  '/patients/$userId/healthSummary/$shareCodeId': typeof PatientsUserIdHealthSummaryShareCodeIdIndexRoute
+  '/patients/$id/': typeof DashboardPatientsIdIndexRoute
+  '/patients/$userId/healthSummary/$shareCodeId/': typeof PatientsUserIdHealthSummaryShareCodeIdIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof DashboardIndexRoute
@@ -140,16 +140,16 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/sign-in'
-    | '/admin'
-    | '/notifications'
-    | '/patients'
-    | '/users'
+    | '/sign-in/'
+    | '/admin/'
+    | '/notifications/'
+    | '/patients/'
+    | '/users/'
     | '/patients/invite'
     | '/users/$id'
     | '/users/invite'
-    | '/patients/$id'
-    | '/patients/$userId/healthSummary/$shareCodeId'
+    | '/patients/$id/'
+    | '/patients/$userId/healthSummary/$shareCodeId/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -190,14 +190,14 @@ declare module '@tanstack/react-router' {
     '/_dashboard': {
       id: '/_dashboard'
       path: ''
-      fullPath: ''
+      fullPath: '/'
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sign-in/': {
       id: '/sign-in/'
       path: '/sign-in'
-      fullPath: '/sign-in'
+      fullPath: '/sign-in/'
       preLoaderRoute: typeof SignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -232,42 +232,42 @@ declare module '@tanstack/react-router' {
     '/_dashboard/users/': {
       id: '/_dashboard/users/'
       path: '/users'
-      fullPath: '/users'
+      fullPath: '/users/'
       preLoaderRoute: typeof DashboardUsersIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/patients/': {
       id: '/_dashboard/patients/'
       path: '/patients'
-      fullPath: '/patients'
+      fullPath: '/patients/'
       preLoaderRoute: typeof DashboardPatientsIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/notifications/': {
       id: '/_dashboard/notifications/'
       path: '/notifications'
-      fullPath: '/notifications'
+      fullPath: '/notifications/'
       preLoaderRoute: typeof DashboardNotificationsIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/admin/': {
       id: '/_dashboard/admin/'
       path: '/admin'
-      fullPath: '/admin'
+      fullPath: '/admin/'
       preLoaderRoute: typeof DashboardAdminIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/patients/$id/': {
       id: '/_dashboard/patients/$id/'
       path: '/patients/$id'
-      fullPath: '/patients/$id'
+      fullPath: '/patients/$id/'
       preLoaderRoute: typeof DashboardPatientsIdIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/patients/$userId/healthSummary/$shareCodeId/': {
       id: '/patients/$userId/healthSummary/$shareCodeId/'
       path: '/patients/$userId/healthSummary/$shareCodeId'
-      fullPath: '/patients/$userId/healthSummary/$shareCodeId'
+      fullPath: '/patients/$userId/healthSummary/$shareCodeId/'
       preLoaderRoute: typeof PatientsUserIdHealthSummaryShareCodeIdIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
