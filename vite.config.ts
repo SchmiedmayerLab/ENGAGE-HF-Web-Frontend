@@ -21,8 +21,8 @@ export default defineConfig({
     react(),
     tanstackRouter({
       routeFilePrefix: "~",
-      routesDirectory: "./routes",
-      generatedRouteTree: "./routeTree.gen.ts",
+      routesDirectory: "./src/routes",
+      generatedRouteTree: "./src/routeTree.gen.ts",
       routeTreeFileHeader: [
         `//
 // This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
@@ -40,17 +40,17 @@ export default defineConfig({
     viteEnvs({
       declarationFile: path.resolve(__dirname, ".env.example"),
       ambientModuleDeclarationFilePath: ({ appRootDirPath }) =>
-        path.join(appRootDirPath, "vite-envs.d.ts"),
+        path.join(appRootDirPath, "src", "vite-envs.d.ts"),
     }),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "."),
+      "@": path.resolve(__dirname, "src"),
     },
   },
   test: {
     globals: true,
     environment: "jsdom",
-    setupFiles: ["./testSetup.ts"],
+    setupFiles: ["./src/testSetup.ts"],
   },
 });
