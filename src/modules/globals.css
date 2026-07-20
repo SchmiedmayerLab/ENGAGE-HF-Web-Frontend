@@ -11,4 +11,4 @@ SPDX-License-Identifier: MIT
 @import '@stanfordspezi/spezi-web-design-system/tailwind.css';
 @import '@stanfordspezi/spezi-web-design-system/base.css';
 
-@source '../node_modules/@stanfordspezi/spezi-web-design-system/dist/**/*.js';
+@source '../../node_modules/@stanfordspezi/spezi-web-design-system/dist/**/*.js';
