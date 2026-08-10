@@ -37,7 +37,7 @@ This project uses Node.js v22. Install Node.js, e.g. using [nvm](https://github.
 
 In order to use Web Frontend, you need to use actual Firebase environment or Emulator with seeded data. For developing locally, it's best to use the Emulator.
 
-1. Clone `https://github.com/StanfordBDHG/ENGAGE-HF-Firebase` repository
+1. Clone `https://github.com/SchmiedmayerLab/ENGAGE-HF-Firebase` repository
 
 2. In the root of ENGAGE-HF-Firebase run:
 
@@ -47,7 +47,7 @@ npm run prepare && npm run serve:seeded
 
 Repeat step 2 each time files have changed.
 
-Refer to [ENGAGE-HF-Firebase](https://github.com/StanfordBDHG/ENGAGE-HF-Firebase) repository for more details.
+Refer to [ENGAGE-HF-Firebase](https://github.com/SchmiedmayerLab/ENGAGE-HF-Firebase) repository for more details.
 
 ### Dashboard
 
