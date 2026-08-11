@@ -36,6 +36,8 @@ jobs:
   testandcoverage:
     name: Test and Coverage
     uses: SchmiedmayerLab/.github/.github/workflows/npm-test-coverage.yml@v0.5
+    with:
+      nodeVersionFile: package.json
     secrets:
       token: ${{ secrets.CODECOV_TOKEN }}
   dockercomposetest:
