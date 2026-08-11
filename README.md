@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
 [![CodeQL](https://github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend/actions/workflows/codeql.yml/badge.svg)](https://github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend/actions/workflows/codeql.yml)
 [![Codecov](https://codecov.io/gh/SchmiedmayerLab/ENGAGE-HF-Web-Frontend/graph/badge.svg?token=PsKyNz7Woe)](https://codecov.io/gh/SchmiedmayerLab/ENGAGE-HF-Web-Frontend)
 [![REUSE status](https://api.reuse.software/badge/github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend)](https://api.reuse.software/info/github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend/blob/main/LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 
 Web Frontend for the ENGAGE-HF project.
 
