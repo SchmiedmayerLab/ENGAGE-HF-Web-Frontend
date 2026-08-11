@@ -71,6 +71,7 @@ jobs:
     permissions:
       contents: read
       checks: write
+      pull-requests: read
     secrets: inherit
   deployfirebase:
     name: Deploy Firebase Project
