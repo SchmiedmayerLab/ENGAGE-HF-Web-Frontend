@@ -49,3 +49,10 @@ docs
 
 # editors
 .idea/
+
+# Playwright
+test-results/
+playwright-report/
+
+# Firebase emulator artifacts
+firestore-debug.log
