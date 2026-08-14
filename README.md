@@ -35,11 +35,15 @@ This project uses Node.js v22. Install Node.js, e.g. using [nvm](https://github.
 
 ### Backend
 
-In order to use Web Frontend, you need to use actual Firebase environment or Emulator with seeded data. For developing locally, it's best to use the Emulator.
+In order to use Web Frontend, you need to use actual Firebase environment or Emulator with seeded data. For developing locally, it's best to use the Emulator, provided by the [ENGAGE-HF-Firebase](https://github.com/SchmiedmayerLab/ENGAGE-HF-Firebase) submodule in the *ENGAGE-HF-Firebase* folder.
 
-1. Clone `https://github.com/SchmiedmayerLab/ENGAGE-HF-Firebase` repository
+1. Clone this repository with submodules, or fetch the submodule in an existing checkout:
 
-2. In the root of ENGAGE-HF-Firebase run:
+```bash
+git submodule update --init
+```
+
+2. In the ENGAGE-HF-Firebase folder run:
 
 ```bash
 npm run prepare && npm run serve:seeded
@@ -68,6 +72,22 @@ npm run dev
 ```
 
 Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+## Testing
+
+Unit tests run with [Vitest](https://vitest.dev):
+
+```bash
+npm run test
+```
+
+End-to-end tests drive the dashboard with [Playwright](https://playwright.dev) against the seeded Firebase emulators from the submodule. Build the backend once (`npm --prefix ENGAGE-HF-Firebase run prepare`), then:
+
+```bash
+npm run test:e2e
+```
+
+The script boots the emulators, seeds them, starts the dev server, and signs in with the seeded debug users.
 
 ## Docker
 
