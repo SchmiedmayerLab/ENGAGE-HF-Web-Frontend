@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { useAuthUser } from "@stanfordspezi/spezi-web-design-system/modules/auth";
+import { useAuthUser } from "@schmiedmayerlab/grove-design-system/modules/auth";
 import { useNavigate } from "@tanstack/react-router";
 import { type ReactNode, useEffect } from "react";
 import { auth } from "@/modules/firebase/app";

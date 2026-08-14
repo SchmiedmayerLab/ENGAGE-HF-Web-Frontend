@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { Notification as NotificationComponent } from "@stanfordspezi/spezi-web-design-system/molecules/Notifications";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { Notification as NotificationComponent } from "@schmiedmayerlab/grove-design-system/molecules/Notifications";
 import { useMutation } from "@tanstack/react-query";
 import { callables } from "@/modules/firebase/app";
 import {

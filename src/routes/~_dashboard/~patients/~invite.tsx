@@ -6,9 +6,9 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { UserType } from "@stanfordbdhg/engagehf-models";
-import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
-import { PageTitle } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
+import { toast } from "@schmiedmayerlab/grove-design-system/components/Toaster";
+import { PageTitle } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Contact } from "lucide-react";
 import { callables, docRefs } from "@/modules/firebase/app";

@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import { useMutation } from "@tanstack/react-query";
 import { useMemo } from "react";
 import { callables } from "@/modules/firebase/app";

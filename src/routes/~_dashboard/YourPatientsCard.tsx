@@ -6,13 +6,13 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { queriesToAsyncProps } from "@stanfordspezi/spezi-web-design-system/components/Async";
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
+import { queriesToAsyncProps } from "@schmiedmayerlab/grove-design-system/components/Async";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
 import {
   Card,
   CardHeader,
   CardTitle,
-} from "@stanfordspezi/spezi-web-design-system/components/Card";
+} from "@schmiedmayerlab/grove-design-system/components/Card";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "@tanstack/react-router";
 import { routes } from "@/modules/routes";

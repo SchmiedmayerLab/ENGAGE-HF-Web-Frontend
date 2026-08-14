@@ -6,12 +6,12 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { UserType } from "@stanfordbdhg/engagehf-models";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
 import {
   DataTable,
   type DataTableProps,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
-import { type RequiredSome } from "@stanfordspezi/spezi-web-design-system/utils/misc";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { type RequiredSome } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { createColumnHelper } from "@tanstack/table-core";
 import { useMemo } from "react";
 import { stringifyType } from "@/modules/firebase/role";
@@ -43,8 +43,10 @@ const columns = [
   }),
 ];
 
-interface UsersDataTableProps
-  extends RequiredSome<DataTableProps<User>, "data"> {}
+interface UsersDataTableProps extends RequiredSome<
+  DataTableProps<User>,
+  "data"
+> {}
 
 export const UsersTable = (props: UsersDataTableProps) => {
   const navigateOrOpen = useNavigateOrOpen();

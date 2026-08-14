@@ -25,8 +25,11 @@ export const routes = {
       patientId: string,
       resourceType: ResourceType,
       params?: { tab?: PatientPageTab },
-    ) =>
-      `/patients/${resourceType === "invitation" ? "invitation-" : ""}${patientId}${params?.tab ? `?tab=${params.tab}` : ""}`,
+    ) => {
+      const prefix = resourceType === "invitation" ? "invitation-" : "";
+      const tabSuffix = params?.tab ? `?tab=${params.tab}` : "";
+      return `/patients/${prefix}${patientId}${tabSuffix}`;
+    },
     invite: "/patients/invite",
     viewHealthSummary: (patientId: string, shareCodeId: string) =>
       `/patients/${patientId}/healthSummary/${shareCodeId}`,

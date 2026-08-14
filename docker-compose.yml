@@ -11,9 +11,9 @@ version: '3.9'
 
 services:
   # ENGAGE-HF Web Frontend
-  stanford-bdhg-engage-hf-web-frontend:
-    container_name: 'stanford-bdhg-engage-hf-web-frontend'
-    image: 'ghcr.io/stanfordbdhg/engagehfwebfrontend:latest'
+  engage-hf-web-frontend:
+    container_name: 'engage-hf-web-frontend'
+    image: 'ghcr.io/schmiedmayerlab/engage-hf-web-frontend:latest'
     environment:
       - VITE_PUBLIC_CHECK=${VITE_PUBLIC_CHECK}
     expose:

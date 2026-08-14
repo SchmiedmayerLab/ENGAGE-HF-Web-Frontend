@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { ErrorState } from "@stanfordspezi/spezi-web-design-system/components/ErrorState";
-import { InputOTP } from "@stanfordspezi/spezi-web-design-system/components/InputOTP";
-import { Spinner } from "@stanfordspezi/spezi-web-design-system/components/Spinner";
-import { base64ToBlob } from "@stanfordspezi/spezi-web-design-system/utils/file";
+import { ErrorState } from "@schmiedmayerlab/grove-design-system/components/ErrorState";
+import { InputOTP } from "@schmiedmayerlab/grove-design-system/components/InputOTP";
+import { Spinner } from "@schmiedmayerlab/grove-design-system/components/Spinner";
+import { base64ToBlob } from "@schmiedmayerlab/grove-design-system/utils/file";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { AsideEngageLayout } from "@/components/AsideEngageLayout";

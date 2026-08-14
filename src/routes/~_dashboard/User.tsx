@@ -11,12 +11,12 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@stanfordspezi/spezi-web-design-system/components/DropdownMenu";
+} from "@schmiedmayerlab/grove-design-system/components/DropdownMenu";
 import {
   getUserName,
   type UserInfo,
-} from "@stanfordspezi/spezi-web-design-system/modules/auth";
-import { UserMenuItem } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+} from "@schmiedmayerlab/grove-design-system/modules/auth";
+import { UserMenuItem } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { LogOut } from "lucide-react";
 import { auth } from "@/modules/firebase/app";
 

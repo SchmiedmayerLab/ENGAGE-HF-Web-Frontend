@@ -7,10 +7,10 @@
 //
 
 import { updateDoc } from "@firebase/firestore";
-import { UserType } from "@stanfordbdhg/engagehf-models";
-import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
-import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";
-import { PageTitle } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
+import { toast } from "@schmiedmayerlab/grove-design-system/components/Toaster";
+import { getUserName } from "@schmiedmayerlab/grove-design-system/modules/auth";
+import { PageTitle } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { createFileRoute, notFound, useRouter } from "@tanstack/react-router";
 import { Users } from "lucide-react";
 import { NotFound } from "@/components/NotFound";

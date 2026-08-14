@@ -8,6 +8,26 @@
 
 const {
   getEslintReactConfig,
-} = require("@stanfordspezi/spezi-web-configurations");
+} = require("@schmiedmayerlab/grove-configurations");
 
-module.exports = getEslintReactConfig({ tsconfigRootDir: __dirname });
+module.exports = [
+  // The backend submodule lints itself with its own configuration.
+  { ignores: ["ENGAGE-HF-Firebase/**"] },
+  ...getEslintReactConfig({ tsconfigRootDir: __dirname }),
+  {
+    rules: {
+      // TanStack Router redirects and not-found results are thrown by design.
+      "@typescript-eslint/only-throw-error": "off",
+    },
+  },
+  {
+    files: [
+      "src/routes/~_dashboard/~patients/actions.tsx",
+      "src/routes/~_dashboard/~patients/clientUtils.ts",
+    ],
+    rules: {
+      // These values are canonical FHIR system identifiers, not network requests.
+      "sonarjs/no-clear-text-protocols": "off",
+    },
+  },
+];

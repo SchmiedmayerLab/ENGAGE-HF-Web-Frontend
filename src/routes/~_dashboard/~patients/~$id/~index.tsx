@@ -7,17 +7,17 @@
 //
 
 import { runTransaction, updateDoc } from "@firebase/firestore";
-import { UserType } from "@stanfordbdhg/engagehf-models";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@stanfordspezi/spezi-web-design-system/components/Tabs";
-import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
-import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";
-import { PageTitle } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
-import { syncData } from "@stanfordspezi/spezi-web-design-system/utils/data";
+} from "@schmiedmayerlab/grove-design-system/components/Tabs";
+import { toast } from "@schmiedmayerlab/grove-design-system/components/Toaster";
+import { getUserName } from "@schmiedmayerlab/grove-design-system/modules/auth";
+import { PageTitle } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
+import { syncData } from "@schmiedmayerlab/grove-design-system/utils/data";
 import { createFileRoute, notFound, useRouter } from "@tanstack/react-router";
 import { Contact } from "lucide-react";
 import { z } from "zod";

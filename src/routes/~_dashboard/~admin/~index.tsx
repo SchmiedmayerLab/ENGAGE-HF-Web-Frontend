@@ -6,10 +6,10 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { UserType } from "@stanfordbdhg/engagehf-models";
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
-import { PageTitle } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { toast } from "@schmiedmayerlab/grove-design-system/components/Toaster";
+import { PageTitle } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { MonitorCog } from "lucide-react";

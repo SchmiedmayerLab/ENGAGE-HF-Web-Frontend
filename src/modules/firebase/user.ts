@@ -9,7 +9,7 @@
 import {
   type GetUsersInformationInput,
   type UserInformation,
-} from "@stanfordbdhg/engagehf-models";
+} from "@schmiedmayerlab/engagehf-models";
 import { chunk } from "es-toolkit";
 import { callables } from "@/modules/firebase/app";
 

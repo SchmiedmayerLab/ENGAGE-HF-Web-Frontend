@@ -6,11 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { PageTitle } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+import { PageTitle } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import {
   NotFound as NotFoundBase,
   type NotFoundProps,
-} from "@stanfordspezi/spezi-web-design-system/molecules/NotFound";
+} from "@schmiedmayerlab/grove-design-system/molecules/NotFound";
 import { useQuery } from "@tanstack/react-query";
 import { RouteOff } from "lucide-react";
 import { currentUserQueryOptions } from "@/modules/firebase/UserProvider";
