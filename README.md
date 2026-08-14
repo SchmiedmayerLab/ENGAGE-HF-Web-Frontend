@@ -87,7 +87,7 @@ End-to-end tests drive the dashboard with [Playwright](https://playwright.dev) a
 npm run test:e2e
 ```
 
-The script boots the emulators, seeds them, starts the dev server, and signs in with the seeded debug users.
+The script boots the emulators, seeds them, starts the dev server, and signs in with the seeded debug users. Stop `npm run serve:seeded` first if it is running, because both use the same emulator ports.
 
 ## Docker
 

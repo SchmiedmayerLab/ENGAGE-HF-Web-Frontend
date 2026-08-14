@@ -25,7 +25,9 @@ export default defineConfig({
   webServer: {
     command: "npm run dev -- --port 5173",
     url: "http://localhost:5173",
-    reuseExistingServer: !process.env.CI,
+    // Never reuse a server this configuration did not start: it would not carry the emulator
+    // environment below and could point the tests at another Firebase project.
+    reuseExistingServer: false,
     env: {
       VITE_PUBLIC_FIREBASE_API_KEY: "example",
       VITE_PUBLIC_FIREBASE_APP_ID: "1:example:web",
