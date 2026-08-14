@@ -2,10 +2,9 @@
   "name": "engagehfwebfrontend",
   "version": "0.1.0",
   "license": "MIT",
-  "description": "Stanford Biodesign Digital Health ENGAGE-HF Web Frontend",
+  "description": "Schmiedmayer Lab ENGAGE-HF Web Frontend",
   "keywords": [
-    "Stanford",
-    "Biodesign"
+    "Stanford"
   ],
   "packageManager": "npm@11.12.1",
   "engines": {
@@ -24,11 +23,13 @@
     "lint:ci": "eslint --output-file eslint_report.json --format json .",
     "test": "vitest run --coverage",
     "prepush": "npm run lint:fix && tsc --noEmit",
-    "storybook": "storybook dev -p 6006"
+    "storybook": "storybook dev -p 6006",
+    "test:e2e": "firebase emulators:exec --project demo-engage-hf -c ./ENGAGE-HF-Firebase/firebase.json --only auth,firestore,functions,storage 'npm run test:e2e:seed && playwright test'",
+    "test:e2e:seed": "curl -s -X PUT localhost:4400/functions/disableBackgroundTriggers 1>/dev/null && curl -s --location \"http://localhost:5001/demo-engage-hf/us-central1/defaultSeed\" --header \"Content-Type: application/json\" --data \"{\\\"staticData\\\": {}}\" 1>/dev/null && curl -s -X PUT localhost:4400/functions/enableBackgroundTriggers 1>/dev/null"
   },
   "dependencies": {
-    "@stanfordbdhg/engagehf-models": "^0.12.0",
-    "@stanfordspezi/spezi-web-design-system": "^0.20.0",
+    "@schmiedmayerlab/engagehf-models": "^0.14.0",
+    "@schmiedmayerlab/grove-design-system": "^0.1.1",
     "@t3-oss/env-core": "^0.13.10",
     "@tanstack/react-query": "^5.90.21",
     "@tanstack/react-router": "^1.166.3",
@@ -46,7 +47,8 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@stanfordspezi/spezi-web-configurations": "^0.7.0",
+    "@playwright/test": "^1.62.1",
+    "@schmiedmayerlab/grove-configurations": "^0.1.1",
     "@storybook/react-vite": "^10.2.16",
     "@tailwindcss/postcss": "^4.2.1",
     "@tanstack/router-plugin": "^1.166.3",
@@ -59,7 +61,8 @@
     "@vitejs/plugin-react": "^5.1.4",
     "@vitest/coverage-v8": "^4.0.18",
     "autoprefixer": "^10",
-    "eslint": "^9.39.3",
+    "eslint": "^10.8.0",
+    "firebase-tools": "^14.24.1",
     "jsdom": "^28.1.0",
     "postcss": "^8",
     "prettier": "^3",

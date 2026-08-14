@@ -20,15 +20,15 @@
 
 import { Route as rootRouteImport } from './routes/~__root'
 import { Route as DashboardRouteImport } from './routes/~_dashboard'
-import { Route as SignInIndexRouteImport } from './routes/~sign-in/~index'
 import { Route as DashboardIndexRouteImport } from './routes/~_dashboard/~index'
-import { Route as DashboardUsersInviteRouteImport } from './routes/~_dashboard/~users/~invite'
-import { Route as DashboardUsersIdRouteImport } from './routes/~_dashboard/~users/~$id'
+import { Route as SignInIndexRouteImport } from './routes/~sign-in/~index'
+import { Route as DashboardAdminIndexRouteImport } from './routes/~_dashboard/~admin/~index'
+import { Route as DashboardNotificationsIndexRouteImport } from './routes/~_dashboard/~notifications/~index'
+import { Route as DashboardPatientsIndexRouteImport } from './routes/~_dashboard/~patients/~index'
 import { Route as DashboardPatientsInviteRouteImport } from './routes/~_dashboard/~patients/~invite'
 import { Route as DashboardUsersIndexRouteImport } from './routes/~_dashboard/~users/~index'
-import { Route as DashboardPatientsIndexRouteImport } from './routes/~_dashboard/~patients/~index'
-import { Route as DashboardNotificationsIndexRouteImport } from './routes/~_dashboard/~notifications/~index'
-import { Route as DashboardAdminIndexRouteImport } from './routes/~_dashboard/~admin/~index'
+import { Route as DashboardUsersIdRouteImport } from './routes/~_dashboard/~users/~$id'
+import { Route as DashboardUsersInviteRouteImport } from './routes/~_dashboard/~users/~invite'
 import { Route as DashboardPatientsIdIndexRouteImport } from './routes/~_dashboard/~patients/~$id/~index'
 import { Route as PatientsUserIdHealthSummaryShareCodeIdIndexRouteImport } from './routes/~patients/~$userId/~healthSummary/~$shareCodeId/~index'
 
@@ -36,24 +36,30 @@ const DashboardRoute = DashboardRouteImport.update({
   id: '/_dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SignInIndexRoute = SignInIndexRouteImport.update({
-  id: '/sign-in/',
-  path: '/sign-in/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const DashboardIndexRoute = DashboardIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardUsersInviteRoute = DashboardUsersInviteRouteImport.update({
-  id: '/users/invite',
-  path: '/users/invite',
+const SignInIndexRoute = SignInIndexRouteImport.update({
+  id: '/sign-in/',
+  path: '/sign-in/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardAdminIndexRoute = DashboardAdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardUsersIdRoute = DashboardUsersIdRouteImport.update({
-  id: '/users/$id',
-  path: '/users/$id',
+const DashboardNotificationsIndexRoute =
+  DashboardNotificationsIndexRouteImport.update({
+    id: '/notifications/',
+    path: '/notifications/',
+    getParentRoute: () => DashboardRoute,
+  } as any)
+const DashboardPatientsIndexRoute = DashboardPatientsIndexRouteImport.update({
+  id: '/patients/',
+  path: '/patients/',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardPatientsInviteRoute = DashboardPatientsInviteRouteImport.update({
@@ -66,20 +72,14 @@ const DashboardUsersIndexRoute = DashboardUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardPatientsIndexRoute = DashboardPatientsIndexRouteImport.update({
-  id: '/patients/',
-  path: '/patients/',
+const DashboardUsersIdRoute = DashboardUsersIdRouteImport.update({
+  id: '/users/$id',
+  path: '/users/$id',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardNotificationsIndexRoute =
-  DashboardNotificationsIndexRouteImport.update({
-    id: '/notifications/',
-    path: '/notifications/',
-    getParentRoute: () => DashboardRoute,
-  } as any)
-const DashboardAdminIndexRoute = DashboardAdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
+const DashboardUsersInviteRoute = DashboardUsersInviteRouteImport.update({
+  id: '/users/invite',
+  path: '/users/invite',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardPatientsIdIndexRoute =
@@ -194,13 +194,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sign-in/': {
-      id: '/sign-in/'
-      path: '/sign-in'
-      fullPath: '/sign-in/'
-      preLoaderRoute: typeof SignInIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_dashboard/': {
       id: '/_dashboard/'
       path: '/'
@@ -208,18 +201,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/_dashboard/users/invite': {
-      id: '/_dashboard/users/invite'
-      path: '/users/invite'
-      fullPath: '/users/invite'
-      preLoaderRoute: typeof DashboardUsersInviteRouteImport
+    '/sign-in/': {
+      id: '/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in/'
+      preLoaderRoute: typeof SignInIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_dashboard/admin/': {
+      id: '/_dashboard/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof DashboardAdminIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/_dashboard/users/$id': {
-      id: '/_dashboard/users/$id'
-      path: '/users/$id'
-      fullPath: '/users/$id'
-      preLoaderRoute: typeof DashboardUsersIdRouteImport
+    '/_dashboard/notifications/': {
+      id: '/_dashboard/notifications/'
+      path: '/notifications'
+      fullPath: '/notifications/'
+      preLoaderRoute: typeof DashboardNotificationsIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/_dashboard/patients/': {
+      id: '/_dashboard/patients/'
+      path: '/patients'
+      fullPath: '/patients/'
+      preLoaderRoute: typeof DashboardPatientsIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/patients/invite': {
@@ -236,25 +243,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardUsersIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/_dashboard/patients/': {
-      id: '/_dashboard/patients/'
-      path: '/patients'
-      fullPath: '/patients/'
-      preLoaderRoute: typeof DashboardPatientsIndexRouteImport
+    '/_dashboard/users/$id': {
+      id: '/_dashboard/users/$id'
+      path: '/users/$id'
+      fullPath: '/users/$id'
+      preLoaderRoute: typeof DashboardUsersIdRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/_dashboard/notifications/': {
-      id: '/_dashboard/notifications/'
-      path: '/notifications'
-      fullPath: '/notifications/'
-      preLoaderRoute: typeof DashboardNotificationsIndexRouteImport
-      parentRoute: typeof DashboardRoute
-    }
-    '/_dashboard/admin/': {
-      id: '/_dashboard/admin/'
-      path: '/admin'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof DashboardAdminIndexRouteImport
+    '/_dashboard/users/invite': {
+      id: '/_dashboard/users/invite'
+      path: '/users/invite'
+      fullPath: '/users/invite'
+      preLoaderRoute: typeof DashboardUsersInviteRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/_dashboard/patients/$id/': {

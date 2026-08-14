@@ -6,25 +6,25 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@stanfordspezi/spezi-web-design-system/components/Dialog";
+} from "@schmiedmayerlab/grove-design-system/components/Dialog";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
 import {
   Field,
   FormError,
   useForm,
-} from "@stanfordspezi/spezi-web-design-system/forms";
+} from "@schmiedmayerlab/grove-design-system/forms";
 import { type ComponentProps } from "react";
 import { z } from "zod";
 import { AllergyType, stringifyAllergyType } from "@/modules/firebase/allergy";

@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { queriesToAsyncProps } from "@stanfordspezi/spezi-web-design-system/components/Async";
+import { queriesToAsyncProps } from "@schmiedmayerlab/grove-design-system/components/Async";
 import { useQuery } from "@tanstack/react-query";
 import { useUser } from "@/modules/firebase/UserProvider";
 import { getNotificationPatientId } from "@/modules/notifications/helpers";

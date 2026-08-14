@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import { Download } from "lucide-react";
 import { type ResourceType } from "@/modules/firebase/utils";
 import { useDownloadPatientData } from "@/modules/user/patients";

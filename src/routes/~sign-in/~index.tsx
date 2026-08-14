@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { SignInForm as AuthSignInForm } from "@stanfordspezi/spezi-web-design-system/modules/auth";
+import { SignInForm as AuthSignInForm } from "@schmiedmayerlab/grove-design-system/modules/auth";
 import { createFileRoute } from "@tanstack/react-router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { AsideEngageLayout } from "@/components/AsideEngageLayout";

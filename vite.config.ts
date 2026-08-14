@@ -8,12 +8,12 @@
 
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
-/// <reference types="vitest/config" />
 import path from "node:path";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { viteEnvs } from "vite-envs";
+import { configDefaults } from "vitest/config";
 
 export default defineConfig({
   root: ".",
@@ -52,5 +52,6 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: ["./src/testSetup.ts"],
+    exclude: [...configDefaults.exclude, "e2e/**", "ENGAGE-HF-Firebase/**"],
   },
 });

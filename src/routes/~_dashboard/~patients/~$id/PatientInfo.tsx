@@ -6,8 +6,8 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { Card } from "@stanfordspezi/spezi-web-design-system/components/Card";
-import { formatNilDateTime } from "@stanfordspezi/spezi-web-design-system/utils/date";
+import { Card } from "@schmiedmayerlab/grove-design-system/components/Card";
+import { formatNilDateTime } from "@schmiedmayerlab/grove-design-system/utils/date";
 import { Clock, FileQuestion, Mail, BookLock, FileInput } from "lucide-react";
 import { type ReactNode } from "react";
 import { type PatientInfo as PatientInfoData } from "@/routes/~_dashboard/~patients/utils";

@@ -21,7 +21,7 @@ import {
   type organizationConverter,
   type userConverter,
   type userMessageConverter,
-} from "@stanfordbdhg/engagehf-models";
+} from "@schmiedmayerlab/engagehf-models";
 
 export type Organization = InferEncoded<typeof organizationConverter> & {
   id: string;

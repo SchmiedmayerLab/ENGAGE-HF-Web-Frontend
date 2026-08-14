@@ -6,11 +6,11 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { getUserInfo } from "@stanfordspezi/spezi-web-design-system/modules/auth";
+import { getUserInfo } from "@schmiedmayerlab/grove-design-system/modules/auth";
 import {
   DashboardLayout as DashboardLayoutBase,
   type DashboardLayoutProps as DashboardLayoutPropsBase,
-} from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+} from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { Link } from "@tanstack/react-router";
 import { Logo } from "@/components/icons/Logo";
 import { LogoType } from "@/components/icons/LogoType";
@@ -18,8 +18,10 @@ import { useUser } from "@/modules/firebase/UserProvider";
 import { MenuLinks } from "@/routes/~_dashboard/MenuLinks";
 import { User } from "@/routes/~_dashboard/User";
 
-interface DashboardLayoutProps
-  extends Omit<DashboardLayoutPropsBase, "aside" | "mobile"> {}
+interface DashboardLayoutProps extends Omit<
+  DashboardLayoutPropsBase,
+  "aside" | "mobile"
+> {}
 
 export const DashboardLayout = (props: DashboardLayoutProps) => {
   const { auth } = useUser();

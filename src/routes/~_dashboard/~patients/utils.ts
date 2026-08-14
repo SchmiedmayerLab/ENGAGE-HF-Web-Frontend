@@ -10,8 +10,8 @@ import {
   FHIRAllergyIntoleranceCriticality,
   FHIRAllergyIntoleranceType,
   UserType,
-} from "@stanfordbdhg/engagehf-models";
-import { type Nil } from "@stanfordspezi/spezi-web-design-system/utils/misc";
+} from "@schmiedmayerlab/engagehf-models";
+import { type Nil } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { groupBy } from "es-toolkit";
 import { limit, orderBy, query, where } from "firebase/firestore";
 import { AllergyType } from "@/modules/firebase/allergy";

@@ -9,7 +9,7 @@
 import {
   DataTable,
   type DataTableProps,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
 import { parseNilLocalizedText } from "@/modules/firebase/localizedText";
 import { type UserMessage } from "@/modules/firebase/models";
 import { isMessageRead } from "@/modules/notifications/helpers";
@@ -36,8 +36,10 @@ const columns = [
   }),
 ];
 
-interface NotificationsTableProps
-  extends Omit<DataTableProps<UserMessage>, "data" | "columns"> {
+interface NotificationsTableProps extends Omit<
+  DataTableProps<UserMessage>,
+  "data" | "columns"
+> {
   notifications: UserMessage[];
 }
 

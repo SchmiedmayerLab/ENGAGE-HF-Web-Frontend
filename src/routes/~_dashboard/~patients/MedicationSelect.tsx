@@ -13,14 +13,13 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
 import { type ComponentProps } from "react";
 import { parseLocalizedText } from "@/modules/firebase/localizedText";
 import { type MedicationsData } from "@/routes/~_dashboard/~patients/utils";
 
 interface MedicationSelectProps
-  extends MedicationsData,
-    Omit<ComponentProps<typeof Select>, "children"> {}
+  extends MedicationsData, Omit<ComponentProps<typeof Select>, "children"> {}
 
 export const MedicationSelect = ({
   medications,
