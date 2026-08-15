@@ -44,6 +44,8 @@ import {
   type PatientFormSchema,
 } from "@/routes/~_dashboard/~patients/PatientForm";
 import {
+  type AllergiesData,
+  type AppointmentsData,
   formatBirthDate,
   getAllergiesData,
   getAppointmentsData,
@@ -52,6 +54,9 @@ import {
   getMeasurementsData,
   getMedicationsData,
   getPatientInfo,
+  type LabsData,
+  type MeasurementsData,
+  type MedicationsData,
 } from "@/routes/~_dashboard/~patients/utils";
 import { Allergies } from "@/routes/~_dashboard/~patients/~$id/Allergies";
 import { Appointments } from "@/routes/~_dashboard/~patients/~$id/Appointments";
@@ -311,19 +316,45 @@ export const Route = createFileRoute("/_dashboard/patients/$id/")({
     ]);
     if (!userData) throw notFound();
     const { user, authUser } = userData;
+    const isPermanentInvitation =
+      resourceType === "invitation" && user.permanent;
+
+    const medications: MedicationsData =
+      isPermanentInvitation ? { medications: [] } : await getMedicationsData();
+    const formProps = await getFormProps();
+    const userMedications: Awaited<ReturnType<typeof getUserMedications>> =
+      isPermanentInvitation ?
+        []
+      : await getUserMedications({ userId, resourceType });
+    const allergiesData: AllergiesData =
+      isPermanentInvitation ?
+        { allergyIntolerances: [], userId, resourceType }
+      : await getAllergiesData({ userId, resourceType });
+    const labsData: LabsData =
+      isPermanentInvitation ?
+        { observations: [], userId, resourceType }
+      : await getLabsData({ userId, resourceType });
+    const appointmentsData: AppointmentsData =
+      isPermanentInvitation ?
+        { appointments: [], userId, resourceType }
+      : await getAppointmentsData({ userId, resourceType });
+    const measurementsData: MeasurementsData =
+      isPermanentInvitation ?
+        { observations: [], userId, resourceType }
+      : await getMeasurementsData({ userId, resourceType });
 
     return {
       user,
       userId,
       authUser,
       resourceType,
-      medications: await getMedicationsData(),
-      formProps: await getFormProps(),
-      userMedications: await getUserMedications({ userId, resourceType }),
-      allergiesData: await getAllergiesData({ userId, resourceType }),
-      labsData: await getLabsData({ userId, resourceType }),
-      appointmentsData: await getAppointmentsData({ userId, resourceType }),
-      measurementsData: await getMeasurementsData({ userId, resourceType }),
+      medications,
+      formProps,
+      userMedications,
+      allergiesData,
+      labsData,
+      appointmentsData,
+      measurementsData,
       info: await getPatientInfo(userData),
     };
   },
