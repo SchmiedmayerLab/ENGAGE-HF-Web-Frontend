@@ -11,7 +11,6 @@ import {
   DataTable,
   type DataTableProps,
 } from "@schmiedmayerlab/grove-design-system/components/DataTable";
-import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import { type RequiredSome } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { createColumnHelper } from "@tanstack/table-core";
 import { FileInput, RefreshCw, ShieldX } from "lucide-react";
@@ -36,21 +35,21 @@ const columns = [
     cell: (props) => {
       const patient = props.row.original;
       return (
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col gap-1">
           {patient.disabled && (
-            <Tooltip tooltip="Disabled">
-              <ShieldX className="size-5" />
-            </Tooltip>
+            <span className="flex items-center gap-2">
+              <ShieldX className="size-5" /> Disabled
+            </span>
           )}
           {patient.selfManaged && (
-            <Tooltip tooltip="Self managed">
-              <FileInput className="size-5" />
-            </Tooltip>
+            <span className="flex items-center gap-2">
+              <FileInput className="size-5" /> Self managed
+            </span>
           )}
           {patient.permanent && (
-            <Tooltip tooltip="Permanent invitation">
-              <RefreshCw className="size-5" />
-            </Tooltip>
+            <span className="flex items-center gap-2">
+              <RefreshCw className="size-5" /> Permanent
+            </span>
           )}
         </div>
       );
