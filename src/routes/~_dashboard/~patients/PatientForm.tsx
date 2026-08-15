@@ -43,7 +43,7 @@ export const getPatientFormSchema = (isEmailRequired: boolean) =>
     clinician: z.string().min(1, "Clinician is required"),
     dateOfBirth: z.date().optional(),
     selfManaged: z.boolean(),
-    permanent: z.boolean().nullable(),
+    permanent: z.boolean(),
     providerName: z.preprocess(
       (value: string | null | undefined) =>
         value === "" ? null : String(value),
@@ -107,7 +107,7 @@ export const PatientForm = ({
         user?.dateOfBirth ? parseDateOfBirth(user.dateOfBirth) : undefined,
       providerName: user?.providerName ?? "",
       selfManaged: user?.selfManaged ?? false,
-      permanent: null,
+      permanent: false,
     },
   });
 
@@ -223,8 +223,8 @@ export const PatientForm = ({
               <div className="flex items-center gap-2">
                 <SideLabel label="Is permanent invitation">
                   <Checkbox
-                    checked={value ?? false}
-                    onCheckedChange={onChange}
+                    checked={value}
+                    onCheckedChange={(checked) => onChange(checked === true)}
                     {...restField}
                   />
                 </SideLabel>
