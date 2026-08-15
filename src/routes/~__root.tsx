@@ -1,13 +1,13 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { Toaster } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
-import { SpeziProvider } from "@stanfordspezi/spezi-web-design-system/SpeziProvider";
+import { GroveProvider } from "@schmiedmayerlab/grove-design-system";
+import { Toaster } from "@schmiedmayerlab/grove-design-system/components/Toaster";
 import {
   createRootRoute,
   Link,
@@ -24,18 +24,21 @@ import { ReactQueryClientProvider } from "@/modules/query/ReactQueryClientProvid
 import { routes } from "@/modules/routes";
 import "../modules/globals.css";
 
-const routerProps: ComponentProps<typeof SpeziProvider>["router"] = {
+const routerProps: ComponentProps<typeof GroveProvider>["router"] = {
   Link: ({ href, ...props }) => <Link to={href} {...props} />,
 };
 
 const Root = () => (
   <AuthProvider>
-    <SpeziProvider router={routerProps}>
+    <GroveProvider router={routerProps} colorScheme="system">
       <ReactQueryClientProvider>
-        <Outlet />
+        {/* base.css colors the body, which sits outside the provider's theme scope. */}
+        <div className="bg-surface min-h-screen">
+          <Outlet />
+        </div>
         <Toaster />
       </ReactQueryClientProvider>
-    </SpeziProvider>
+    </GroveProvider>
   </AuthProvider>
 );
 

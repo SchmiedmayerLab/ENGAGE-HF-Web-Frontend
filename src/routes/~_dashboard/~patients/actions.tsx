@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -84,22 +84,21 @@ export const updateObservation = async (
   );
 };
 
+const allergyIntoleranceTypes: Record<AllergyType, FHIRAllergyIntoleranceType> =
+  {
+    [AllergyType.severeAllergy]: FHIRAllergyIntoleranceType.allergy,
+    [AllergyType.allergy]: FHIRAllergyIntoleranceType.allergy,
+    [AllergyType.financial]: FHIRAllergyIntoleranceType.financial,
+    [AllergyType.intolerance]: FHIRAllergyIntoleranceType.intolerance,
+    [AllergyType.preference]: FHIRAllergyIntoleranceType.preference,
+  };
+
 const getAllergyData = (payload: AllergyFormSchema) => ({
   id: null,
   extension: null,
   resourceType: "Allergy",
   meta: null,
-  type:
-    (
-      payload.type === AllergyType.severeAllergy ||
-      payload.type === AllergyType.allergy
-    ) ?
-      FHIRAllergyIntoleranceType.allergy
-    : payload.type === AllergyType.financial ?
-      FHIRAllergyIntoleranceType.financial
-    : payload.type === AllergyType.intolerance ?
-      FHIRAllergyIntoleranceType.intolerance
-    : FHIRAllergyIntoleranceType.preference,
+  type: allergyIntoleranceTypes[payload.type],
   criticality:
     payload.type === AllergyType.severeAllergy ?
       FHIRAllergyIntoleranceCriticality.high

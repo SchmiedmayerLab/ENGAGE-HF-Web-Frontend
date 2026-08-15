@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -8,11 +8,11 @@
 
 import { deleteDoc } from "@firebase/firestore";
 import { UserType } from "@schmiedmayerlab/engagehf-models";
-import { RowDropdownMenu } from "@stanfordspezi/spezi-web-design-system/components/DataTable";
-import { DropdownMenuItem } from "@stanfordspezi/spezi-web-design-system/components/DropdownMenu";
-import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";
-import { ConfirmDeleteDialog } from "@stanfordspezi/spezi-web-design-system/molecules/ConfirmDeleteDialog";
-import { useOpenState } from "@stanfordspezi/spezi-web-design-system/utils/useOpenState";
+import { RowDropdownMenu } from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { DropdownMenuItem } from "@schmiedmayerlab/grove-design-system/components/DropdownMenu";
+import { getUserName } from "@schmiedmayerlab/grove-design-system/modules/auth";
+import { ConfirmDeleteDialog } from "@schmiedmayerlab/grove-design-system/molecules/ConfirmDeleteDialog";
+import { useOpenState } from "@schmiedmayerlab/grove-design-system/utils/useOpenState";
 import { Link, useRouter } from "@tanstack/react-router";
 import { Pencil, Trash, DownloadIcon, FileUser } from "lucide-react";
 import { callables, docRefs } from "@/modules/firebase/app";

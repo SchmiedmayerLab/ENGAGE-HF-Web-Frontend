@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -7,7 +7,7 @@
 //
 
 import { UserType } from "@schmiedmayerlab/engagehf-models";
-import { MenuItem } from "@stanfordspezi/spezi-web-design-system/molecules/DashboardLayout";
+import { MenuItem } from "@schmiedmayerlab/grove-design-system/molecules/DashboardLayout";
 import { useLocation } from "@tanstack/react-router";
 import { Home, Users, Contact, Bell, MonitorCog } from "lucide-react";
 import { useIsUserRole } from "@/modules/firebase/UserProvider";

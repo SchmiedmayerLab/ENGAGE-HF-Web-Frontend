@@ -1,15 +1,15 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { ErrorState } from "@stanfordspezi/spezi-web-design-system/components/ErrorState";
-import { InputOTP } from "@stanfordspezi/spezi-web-design-system/components/InputOTP";
-import { Spinner } from "@stanfordspezi/spezi-web-design-system/components/Spinner";
-import { base64ToBlob } from "@stanfordspezi/spezi-web-design-system/utils/file";
+import { ErrorState } from "@schmiedmayerlab/grove-design-system/components/ErrorState";
+import { InputOTP } from "@schmiedmayerlab/grove-design-system/components/InputOTP";
+import { Spinner } from "@schmiedmayerlab/grove-design-system/components/Spinner";
+import { base64ToBlob } from "@schmiedmayerlab/grove-design-system/utils/file";
 import { useMutation } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import { AsideEngageLayout } from "@/components/AsideEngageLayout";

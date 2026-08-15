@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -7,18 +7,18 @@
 //
 
 import { deleteDoc } from "@firebase/firestore";
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
 import {
   DataTable,
   dateColumn,
   RowDropdownMenu,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
-import { DropdownMenuItem } from "@stanfordspezi/spezi-web-design-system/components/DropdownMenu";
-import { ConfirmDeleteDialog } from "@stanfordspezi/spezi-web-design-system/molecules/ConfirmDeleteDialog";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { DropdownMenuItem } from "@schmiedmayerlab/grove-design-system/components/DropdownMenu";
+import { ConfirmDeleteDialog } from "@schmiedmayerlab/grove-design-system/molecules/ConfirmDeleteDialog";
 import {
   useOpenState,
   useStatefulOpenState,
-} from "@stanfordspezi/spezi-web-design-system/utils/useOpenState";
+} from "@schmiedmayerlab/grove-design-system/utils/useOpenState";
 import { useRouter } from "@tanstack/react-router";
 import { createColumnHelper } from "@tanstack/table-core";
 import { Pencil, Plus, Trash } from "lucide-react";
@@ -146,17 +146,15 @@ export const Labs = ({ observations, userId, resourceType }: LabsProps) => {
         data={observations}
         entityName="observations"
         header={
-          <>
-            <Button
-              size="sm"
-              variant="secondary"
-              className="ml-auto"
-              onClick={createDialog.open}
-            >
-              <Plus />
-              Add observation
-            </Button>
-          </>
+          <Button
+            size="sm"
+            variant="secondary"
+            className="ml-auto"
+            onClick={createDialog.open}
+          >
+            <Plus />
+            Add observation
+          </Button>
         }
         tableView={{
           onRowClick: editDialog.open,

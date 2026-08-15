@@ -1,12 +1,12 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { SignInForm as AuthSignInForm } from "@stanfordspezi/spezi-web-design-system/modules/auth";
+import { SignInForm as AuthSignInForm } from "@schmiedmayerlab/grove-design-system/modules/auth";
 import { createFileRoute } from "@tanstack/react-router";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { AsideEngageLayout } from "@/components/AsideEngageLayout";

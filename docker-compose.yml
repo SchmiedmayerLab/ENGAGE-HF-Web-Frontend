@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+# This source file is part of the ENGAGE-HF Web Frontend open-source project
 # Based on the Apodini workflow found at: https://github.com/Apodini/ApodiniExample/docker-compose.yml
 #
 # SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
@@ -11,9 +11,9 @@ version: '3.9'
 
 services:
   # ENGAGE-HF Web Frontend
-  stanford-bdhg-engage-hf-web-frontend:
-    container_name: 'stanford-bdhg-engage-hf-web-frontend'
-    image: 'ghcr.io/stanfordbdhg/engagehfwebfrontend:latest'
+  engage-hf-web-frontend:
+    container_name: 'engage-hf-web-frontend'
+    image: 'ghcr.io/schmiedmayerlab/engage-hf-web-frontend:latest'
     environment:
       - VITE_PUBLIC_CHECK=${VITE_PUBLIC_CHECK}
     expose:

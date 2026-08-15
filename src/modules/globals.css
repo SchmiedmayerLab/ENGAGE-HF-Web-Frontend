@@ -1,6 +1,6 @@
 /*
 
-This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+This source file is part of the ENGAGE-HF Web Frontend open-source project
 
 SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 
@@ -8,7 +8,15 @@ SPDX-License-Identifier: MIT
 
 */
 
-@import '@stanfordspezi/spezi-web-design-system/tailwind.css';
-@import '@stanfordspezi/spezi-web-design-system/base.css';
+@import '@schmiedmayerlab/grove-design-system/tailwind.css';
+@import '@schmiedmayerlab/grove-design-system/base.css';
 
-@source '../node_modules/@stanfordspezi/spezi-web-design-system/dist/**/*.js';
+@source '../../node_modules/@schmiedmayerlab/grove-design-system/dist/**/*.js';
+
+[data-grove-color-scheme='dark'] .theme-light-only {
+  display: none;
+}
+
+[data-grove-color-scheme='light'] .theme-dark-only {
+  display: none;
+}

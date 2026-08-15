@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -9,14 +9,14 @@
 import {
   DataTable,
   dateColumn,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
 import { createColumnHelper, type Table } from "@tanstack/table-core";
 import { useMemo } from "react";
 import {
@@ -36,14 +36,13 @@ const ObservationTypeFilter = ({ table }: ObservationTypeFilterProps) => {
   const observationTypes = useMemo(() => {
     const types = new Set<string>();
     table.options.data.forEach((row) => types.add(row.typeLabel));
-    return Array.from(types).sort();
+    return Array.from(types).sort((a, b) => a.localeCompare(b));
   }, [table.options.data]);
 
   const currentFilter = table
     .getState()
     .columnFilters.find((filter) => filter.id === columnIds.type)?.value as
-    | string
-    | undefined;
+    string | undefined;
 
   return (
     <div className="flex items-center gap-3">

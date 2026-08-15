@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -10,7 +10,7 @@ import {
   AsideBrandLayoutAside,
   AsideBrandLayoutMain,
   AsideBrandLayoutRoot,
-} from "@stanfordspezi/spezi-web-design-system/molecules/AsideBrandLayout";
+} from "@schmiedmayerlab/grove-design-system/molecules/AsideBrandLayout";
 import { type ReactNode } from "react";
 import { Logo } from "@/components/icons/Logo";
 import { LogoType } from "@/components/icons/LogoType";
@@ -29,9 +29,14 @@ export const AsideEngageLayout = ({ children }: AsideEngageLayoutProps) => (
         <LogoType className="h-auto w-48" />
       </div>
       <img
-        src="/stanfordbiodesign.png"
-        alt="Stanford Biodesign Logo"
-        className="h-[193px]"
+        src="/stanfordmedicine-light.png"
+        alt="Stanford Medicine"
+        className="theme-light-only w-72"
+      />
+      <img
+        src="/stanfordmedicine-dark.png"
+        alt="Stanford Medicine"
+        className="theme-dark-only w-72"
       />
     </AsideBrandLayoutAside>
     <AsideBrandLayoutMain>{children}</AsideBrandLayoutMain>

@@ -1,24 +1,24 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { queriesToAsyncProps } from "@stanfordspezi/spezi-web-design-system/components/Async";
+import { queriesToAsyncProps } from "@schmiedmayerlab/grove-design-system/components/Async";
 import {
   Card,
   CardHeader,
   CardTitle,
-} from "@stanfordspezi/spezi-web-design-system/components/Card";
+} from "@schmiedmayerlab/grove-design-system/components/Card";
 import {
   DataTable,
   dateTimeColumn,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
-import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";
-import { combineQueries } from "@stanfordspezi/spezi-web-design-system/utils/query";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
+import { getUserName } from "@schmiedmayerlab/grove-design-system/modules/auth";
+import { combineQueries } from "@schmiedmayerlab/grove-design-system/utils/query";
 import { useQueries, useQuery } from "@tanstack/react-query";
 import { createColumnHelper } from "@tanstack/table-core";
 import { addWeeks, isBefore, isFuture } from "date-fns";
