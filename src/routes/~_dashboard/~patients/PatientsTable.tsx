@@ -11,9 +11,10 @@ import {
   DataTable,
   type DataTableProps,
 } from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import { type RequiredSome } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { createColumnHelper } from "@tanstack/table-core";
-import { Check } from "lucide-react";
+import { FileInput, RefreshCw, ShieldX } from "lucide-react";
 import { useMemo } from "react";
 import { useUser } from "@/modules/firebase/UserProvider";
 import { routes } from "@/modules/routes";
@@ -29,17 +30,31 @@ const columns = [
   userColumns.displayName,
   userColumns.email,
   userColumns.organization,
-  userColumns.disabled,
-  columnHelper.accessor("selfManaged", {
-    header: "Self Managed",
+  columnHelper.display({
+    id: "status",
+    header: "Status",
     cell: (props) => {
-      const selfManaged = props.getValue();
-      return selfManaged ? <Check className="size-5" /> : "";
+      const patient = props.row.original;
+      return (
+        <div className="flex items-center gap-2">
+          {patient.disabled && (
+            <Tooltip tooltip="Disabled">
+              <ShieldX className="size-5" />
+            </Tooltip>
+          )}
+          {patient.selfManaged && (
+            <Tooltip tooltip="Self managed">
+              <FileInput className="size-5" />
+            </Tooltip>
+          )}
+          {patient.permanent && (
+            <Tooltip tooltip="Permanent invitation">
+              <RefreshCw className="size-5" />
+            </Tooltip>
+          )}
+        </div>
+      );
     },
-  }),
-  columnHelper.accessor("permanent", {
-    header: "Permanent",
-    cell: (props) => (props.getValue() ? <Check className="size-5" /> : ""),
   }),
   columnHelper.display({
     id: "actions",
