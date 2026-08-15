@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { FHIRExtensionUrl } from "@stanfordbdhg/engagehf-models";
+import { FHIRExtensionUrl } from "@schmiedmayerlab/engagehf-models";
 import { queryOptions } from "@tanstack/react-query";
 import { orderBy, query } from "firebase/firestore";
 import { refs } from "@/modules/firebase/app";

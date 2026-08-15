@@ -6,7 +6,7 @@
 // SPDX-License-Identifier: MIT
 //
 
-import { type UserType } from "@stanfordbdhg/engagehf-models";
+import { type UserType } from "@schmiedmayerlab/engagehf-models";
 import { getUserInfo } from "@stanfordspezi/spezi-web-design-system/modules/auth";
 import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "@/modules/firebase/app";

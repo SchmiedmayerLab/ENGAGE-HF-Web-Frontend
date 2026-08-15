@@ -13,7 +13,7 @@ import {
   FHIRAppointmentStatus,
   FHIRObservationStatus,
   FHIRExtensionUrl,
-} from "@stanfordbdhg/engagehf-models";
+} from "@schmiedmayerlab/engagehf-models";
 import { addHours } from "date-fns";
 import { AllergyType } from "@/modules/firebase/allergy";
 import { docRefs, refs } from "@/modules/firebase/app";

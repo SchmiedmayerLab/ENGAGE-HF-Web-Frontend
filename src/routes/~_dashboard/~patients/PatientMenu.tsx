@@ -7,7 +7,7 @@
 //
 
 import { deleteDoc } from "@firebase/firestore";
-import { UserType } from "@stanfordbdhg/engagehf-models";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
 import { RowDropdownMenu } from "@stanfordspezi/spezi-web-design-system/components/DataTable";
 import { DropdownMenuItem } from "@stanfordspezi/spezi-web-design-system/components/DropdownMenu";
 import { getUserName } from "@stanfordspezi/spezi-web-design-system/modules/auth";

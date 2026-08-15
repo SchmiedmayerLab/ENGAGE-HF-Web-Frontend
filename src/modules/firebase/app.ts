@@ -8,7 +8,7 @@
 
 import { initializeApp } from "@firebase/app";
 import { connectFunctionsEmulator, getFunctions } from "@firebase/functions";
-import { type UserType } from "@stanfordbdhg/engagehf-models";
+import { type UserType } from "@schmiedmayerlab/engagehf-models";
 import { toast } from "@stanfordspezi/spezi-web-design-system/components/Toaster";
 import { queryOptions } from "@tanstack/react-query";
 import { redirect } from "@tanstack/react-router";

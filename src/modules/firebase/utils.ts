@@ -33,7 +33,7 @@ import {
   type DefaultSeedOutput,
   type ExportDataInputSchema,
   type ExportDataOutputSchema,
-} from "@stanfordbdhg/engagehf-models";
+} from "@schmiedmayerlab/engagehf-models";
 import { strategy } from "@stanfordspezi/spezi-web-design-system/utils/misc";
 import {
   collection,
