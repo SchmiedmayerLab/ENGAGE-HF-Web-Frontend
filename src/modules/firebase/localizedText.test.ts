@@ -1,5 +1,5 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
@@ -46,8 +46,8 @@ describe("parseLocalizedText", () => {
 
 describe("parseNilLocalizedText", () => {
   it("supports nil values", () => {
-    expect(parseNilLocalizedText(null)).toBe(null);
-    expect(parseNilLocalizedText(undefined)).toBe(null);
+    expect(parseNilLocalizedText(null)).toBeNull();
+    expect(parseNilLocalizedText(undefined)).toBeNull();
     expect(parseNilLocalizedText("")).toBe("");
   });
 });

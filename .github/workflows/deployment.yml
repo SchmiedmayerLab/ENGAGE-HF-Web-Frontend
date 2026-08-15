@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+# This source file is part of the ENGAGE-HF Web Frontend open-source project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
@@ -50,9 +50,9 @@ jobs:
         id: set-env
         run: |
           if [[ -z "${{ inputs.environment }}" ]]; then
-            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "environment=staging" >> "$GITHUB_OUTPUT"
           else
-            echo "environment=${{ inputs.environment }}" >> $GITHUB_OUTPUT
+            echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
           fi
   vars:
     name: Inject Environment Variables In Deployment Workflow
@@ -71,11 +71,12 @@ jobs:
     permissions:
       contents: read
       checks: write
+      pull-requests: read
     secrets: inherit
   deployfirebase:
     name: Deploy Firebase Project
     needs: [buildandtest, determineenvironment, vars]
-    uses: StanfordBDHG/.github/.github/workflows/firebase-deploy.yml@v2
+    uses: SchmiedmayerLab/.github/.github/workflows/firebase-deploy.yml@v0.5
     permissions:
       contents: read
     with:
@@ -91,3 +92,5 @@ jobs:
         VITE_PUBLIC_FIREBASE_STORAGE_BUCKET='${{ secrets.VITE_PUBLIC_FIREBASE_STORAGE_BUCKET }}'
         VITE_PUBLIC_FIREBASE_MESSAGING_SENDER_ID='${{ secrets.VITE_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}'
         VITE_PUBLIC_FIREBASE_APP_ID='${{ secrets.VITE_PUBLIC_FIREBASE_APP_ID }}'
+        VITE_PUBLIC_EMULATOR='false'
+        VITE_PUBLIC_EMAIL_PASSWORD_SIGN_IN='false'

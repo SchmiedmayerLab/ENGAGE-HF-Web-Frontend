@@ -1,13 +1,13 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { Card } from "@stanfordspezi/spezi-web-design-system/components/Card";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { Card } from "@schmiedmayerlab/grove-design-system/components/Card";
 import {
   Dialog,
   DialogContent,
@@ -16,30 +16,30 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogClose,
-} from "@stanfordspezi/spezi-web-design-system/components/Dialog";
-import { EmptyState } from "@stanfordspezi/spezi-web-design-system/components/EmptyState";
+} from "@schmiedmayerlab/grove-design-system/components/Dialog";
+import { EmptyState } from "@schmiedmayerlab/grove-design-system/components/EmptyState";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
-import { StateContainer } from "@stanfordspezi/spezi-web-design-system/components/StateContainer";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
+import { StateContainer } from "@schmiedmayerlab/grove-design-system/components/StateContainer";
 import {
   Table,
   TableCell,
   TableHeader,
   TableRow,
   TableBody,
-} from "@stanfordspezi/spezi-web-design-system/components/Table";
-import { Textarea } from "@stanfordspezi/spezi-web-design-system/components/Textarea";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
+} from "@schmiedmayerlab/grove-design-system/components/Table";
+import { Textarea } from "@schmiedmayerlab/grove-design-system/components/Textarea";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import {
   Field,
   FormError,
   useForm,
-} from "@stanfordspezi/spezi-web-design-system/forms";
+} from "@schmiedmayerlab/grove-design-system/forms";
 import { Plus, Check, Trash, Pencil } from "lucide-react";
 import { v4 as uuid } from "uuid";
 import { z } from "zod";
@@ -82,6 +82,46 @@ const formSchema = z.object({
 });
 
 export type MedicationsFormSchema = z.infer<typeof formSchema>;
+
+type MedicationsDrug =
+  MedicationsData["medications"][number]["medications"][number]["drugs"][number];
+
+const DrugSelectItem = ({ drug }: { drug: MedicationsDrug }) => (
+  <SelectItem
+    value={drug.id}
+    itemText={`${drug.name} - ${drug.ingredients
+      .map((ingredient) => `${ingredient.strength}${ingredient.unit}`)
+      .join(", ")}`}
+  >
+    <div className="flex flex-col">
+      <b>{drug.name}</b>
+      {drug.ingredients.map((ingredient) => (
+        <p key={ingredient.name}>
+          {ingredient.name} - {ingredient.strength}
+          {ingredient.unit}
+        </p>
+      ))}
+    </div>
+  </SelectItem>
+);
+
+const DailyDosages = ({
+  dosages,
+}: {
+  dosages: Array<{ name: string; dosage: number }>;
+}) => {
+  if (dosages.length === 0) return <>-</>;
+  if (dosages.length === 1) return <>{`${dosages.at(0)?.dosage}mg`}</>;
+  return (
+    <div>
+      {dosages.map((dosage) => (
+        <div key={dosage.name}>
+          {dosage.name} - {dosage.dosage}mg
+        </div>
+      ))}
+    </div>
+  );
+};
 
 interface MedicationsProps extends MedicationsData {
   onSave: (data: MedicationsFormSchema) => Promise<void>;
@@ -187,6 +227,7 @@ export const Medications = ({
                 `medications.${index}.${key}` as const;
 
               return (
+                // eslint-disable-next-line @eslint-react/no-array-index-key -- Rows have no stable identity before a medication is selected.
                 <TableRow key={`${medicationValue.id}-${index}`}>
                   <TableCell>
                     <Field
@@ -236,26 +277,7 @@ export const Medications = ({
                           </SelectTrigger>
                           <SelectContent>
                             {selectedMedication?.drugs.map((drug) => (
-                              <SelectItem
-                                value={drug.id}
-                                key={drug.id}
-                                itemText={`${drug.name} - ${drug.ingredients
-                                  .map(
-                                    (ingredient) =>
-                                      `${ingredient.strength}${ingredient.unit}`,
-                                  )
-                                  .join(", ")}`}
-                              >
-                                <div className="flex flex-col">
-                                  <b>{drug.name}</b>
-                                  {drug.ingredients.map((ingredient) => (
-                                    <p key={ingredient.name}>
-                                      {ingredient.name} - {ingredient.strength}
-                                      {ingredient.unit}
-                                    </p>
-                                  ))}
-                                </div>
-                              </SelectItem>
+                              <DrugSelectItem drug={drug} key={drug.id} />
                             ))}
                           </SelectContent>
                         </Select>
@@ -332,18 +354,7 @@ export const Medications = ({
                     />
                   </TableCell>
                   <TableCell className="font-medium">
-                    {dailyDosages.length === 0 ?
-                      "-"
-                    : dailyDosages.length === 1 ?
-                      `${dailyDosages.at(0)?.dosage}mg`
-                    : <div>
-                        {dailyDosages.map((dosage) => (
-                          <div key={dosage.name}>
-                            {dosage.name} - {dosage.dosage}mg
-                          </div>
-                        ))}
-                      </div>
-                    }
+                    <DailyDosages dosages={dailyDosages} />
                   </TableCell>
                   <TableCell>
                     <Dialog>

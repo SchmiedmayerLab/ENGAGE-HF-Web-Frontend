@@ -1,33 +1,33 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { DatePicker } from "@stanfordspezi/spezi-web-design-system/components/DatePicker";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { DatePicker } from "@schmiedmayerlab/grove-design-system/components/DatePicker";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
-} from "@stanfordspezi/spezi-web-design-system/components/Dialog";
-import { Input } from "@stanfordspezi/spezi-web-design-system/components/Input";
+} from "@schmiedmayerlab/grove-design-system/components/Dialog";
+import { Input } from "@schmiedmayerlab/grove-design-system/components/Input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
 import {
   Field,
   FormError,
   useForm,
-} from "@stanfordspezi/spezi-web-design-system/forms";
-import { type ComponentProps } from "react";
+} from "@schmiedmayerlab/grove-design-system/forms";
+import { type ComponentProps, useState } from "react";
 import { z } from "zod";
 import { UserObservationCollection } from "@/modules/firebase/utils";
 import {
@@ -57,6 +57,7 @@ interface LabFormProps {
 export const LabForm = ({ observation, onSubmit }: LabFormProps) => {
   const isEdit = !!observation;
   const defaultType = observation?.type ?? UserObservationCollection.potassium;
+  const [initialEffectiveDateTime] = useState(() => new Date());
   const form = useForm({
     formSchema: labFormSchema,
     defaultValues: {
@@ -64,7 +65,7 @@ export const LabForm = ({ observation, onSubmit }: LabFormProps) => {
       effectiveDateTime:
         observation?.effectiveDateTime ?
           new Date(observation.effectiveDateTime)
-        : new Date(),
+        : initialEffectiveDateTime,
       unit: observation?.unit ?? getUnitOfObservationType(defaultType).unit,
       value: observation?.value ?? undefined,
     },

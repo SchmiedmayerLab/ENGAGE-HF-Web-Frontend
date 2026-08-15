@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+# This source file is part of the ENGAGE-HF Web Frontend open-source project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
@@ -18,20 +18,47 @@ on:
   workflow_call:
 
 jobs:
-  reuseaction:
-    name: REUSE Compliance Check
-    uses: StanfordBDHG/.github/.github/workflows/reuse.yml@v2
-  markdownlinkcheck:
-    name: Markdown Link Check
-    uses: StanfordBDHG/.github/.github/workflows/markdown-link-check.yml@v2
   eslint:
     name: ESLint
-    uses: StanfordBDHG/.github/.github/workflows/eslint.yml@v2
+    uses: SchmiedmayerLab/.github/.github/workflows/eslint.yml@v0.5
     permissions:
       contents: read
       checks: write
   testandcoverage:
     name: Test and Coverage
-    uses: StanfordBDHG/.github/.github/workflows/npm-test-and-coverage.yml@v2
+    uses: SchmiedmayerLab/.github/.github/workflows/npm-test-coverage.yml@v0.5
+    with:
+      nodeVersionFile: package.json
     secrets:
       token: ${{ secrets.CODECOV_TOKEN }}
+  endtoendtests:
+    name: End-to-End Tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          submodules: recursive
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: package.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - name: Install dependencies
+        run: npm ci
+      - name: Install the browser
+        run: npx playwright install --with-deps chromium
+      - name: Build the backend
+        run: npm --prefix ENGAGE-HF-Firebase run prepare
+      - name: Run the end-to-end tests
+        run: npm run test:e2e
+      - if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

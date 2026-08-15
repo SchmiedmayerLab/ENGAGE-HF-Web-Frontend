@@ -1,5 +1,5 @@
 #
-# This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+# This source file is part of the ENGAGE-HF Web Frontend open-source project
 #
 # SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
@@ -8,14 +8,17 @@
 
 cff-version: 1.2.0
 message: 'If you use this software, please cite it as below.'
+type: software
 authors:
+  - family-names: 'Bachorski'
+    given-names: 'Arkadiusz'
+  - family-names: 'Kraft'
+    given-names: 'Paul Johannes'
+    orcid: 'https://orcid.org/0000-0001-8157-8151'
   - family-names: 'Schmiedmayer'
     given-names: 'Paul'
     orcid: 'https://orcid.org/0000-0002-8607-9148'
-  - family-names: 'Ravi'
-    given-names: 'Vishnu'
-    orcid: 'https://orcid.org/0000-0003-0359-1275'
-  - family-names: 'Arkadiusz'
-    given-names: 'Bachorski'
 title: 'ENGAGE-HF Web Frontend'
-url: 'https://github.com/StanfordBDHG/ENGAGE-HF-Web-Frontend'
+license: MIT
+url: "https://github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend"
+repository-code: "https://github.com/SchmiedmayerLab/ENGAGE-HF-Web-Frontend"

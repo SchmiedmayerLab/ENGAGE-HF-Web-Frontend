@@ -1,14 +1,14 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { CopyText } from "@stanfordspezi/spezi-web-design-system/components/CopyText";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
-import { type Nil } from "@stanfordspezi/spezi-web-design-system/utils/misc";
+import { CopyText } from "@schmiedmayerlab/grove-design-system/components/CopyText";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
+import { type Nil } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { createColumnHelper } from "@tanstack/table-core";
 import { Mail, ShieldX } from "lucide-react";
 
@@ -35,17 +35,19 @@ export const createSharedUserColumns = <User extends SharedUser>() => {
         header: "Id",
         cell: (props) => {
           const user = props.row.original;
-          return (
-            user.resourceType === "invitation" ?
+          if (user.resourceType === "invitation") {
+            return (
               <Tooltip tooltip="User hasn't logged in yet">
                 <div className="flex items-center gap-2">
                   <Mail className="text-muted-foreground size-5" />
                   Invitation
                 </div>
               </Tooltip>
-            : user.resourceId ?
-              <CopyText className="max-w-[7rem]">{user.resourceId}</CopyText>
-            : "-"
+            );
+          }
+          if (!user.resourceId) return <>-</>;
+          return (
+            <CopyText className="max-w-[7rem]">{user.resourceId}</CopyText>
           );
         },
       },

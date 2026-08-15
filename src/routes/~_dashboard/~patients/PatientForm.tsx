@@ -1,34 +1,34 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { Button } from "@stanfordspezi/spezi-web-design-system/components/Button";
-import { Checkbox } from "@stanfordspezi/spezi-web-design-system/components/Checkbox";
-import { DatePicker } from "@stanfordspezi/spezi-web-design-system/components/DatePicker";
-import { InfoButton } from "@stanfordspezi/spezi-web-design-system/components/InfoButton";
-import { Input } from "@stanfordspezi/spezi-web-design-system/components/Input";
+import { Button } from "@schmiedmayerlab/grove-design-system/components/Button";
+import { Checkbox } from "@schmiedmayerlab/grove-design-system/components/Checkbox";
+import { DatePicker } from "@schmiedmayerlab/grove-design-system/components/DatePicker";
+import { InfoButton } from "@schmiedmayerlab/grove-design-system/components/InfoButton";
+import { Input } from "@schmiedmayerlab/grove-design-system/components/Input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@stanfordspezi/spezi-web-design-system/components/Select";
-import { SideLabel } from "@stanfordspezi/spezi-web-design-system/components/SideLabel";
-import { Tooltip } from "@stanfordspezi/spezi-web-design-system/components/Tooltip";
+} from "@schmiedmayerlab/grove-design-system/components/Select";
+import { SideLabel } from "@schmiedmayerlab/grove-design-system/components/SideLabel";
+import { Tooltip } from "@schmiedmayerlab/grove-design-system/components/Tooltip";
 import {
   Field,
   FormError,
   useForm,
-} from "@stanfordspezi/spezi-web-design-system/forms";
+} from "@schmiedmayerlab/grove-design-system/forms";
 import {
   getUserName,
   type UserInfo,
-} from "@stanfordspezi/spezi-web-design-system/modules/auth";
+} from "@schmiedmayerlab/grove-design-system/modules/auth";
 import { z } from "zod";
 import { type User } from "@/modules/firebase/models";
 import { type ResourceType } from "@/modules/firebase/utils";
@@ -43,11 +43,11 @@ export const getPatientFormSchema = (isEmailRequired: boolean) =>
     clinician: z.string().min(1, "Clinician is required"),
     dateOfBirth: z.date().optional(),
     selfManaged: z.boolean(),
-    providerName: z.preprocess(
-      (value: string | null | undefined) =>
-        value === "" ? null : String(value),
-      z.string().nullable(),
-    ),
+    permanent: z.boolean(),
+    providerName: z
+      .string()
+      .nullable()
+      .transform((value) => (value === "" ? null : value)),
   });
 
 export type PatientFormSchema = z.infer<
@@ -106,6 +106,7 @@ export const PatientForm = ({
         user?.dateOfBirth ? parseDateOfBirth(user.dateOfBirth) : undefined,
       providerName: user?.providerName ?? "",
       selfManaged: user?.selfManaged ?? false,
+      permanent: false,
     },
   });
 
@@ -204,6 +205,29 @@ export const PatientForm = ({
                   />
                 </SideLabel>
                 <Tooltip tooltip="This feature allows patients to enter their own medication and laboratory value updates.">
+                  <InfoButton />
+                </Tooltip>
+              </div>
+            );
+          }}
+        />
+      )}
+      {!isEdit && (
+        <Field
+          control={form.control}
+          name="permanent"
+          render={({ field }) => {
+            const { value, onChange, ...restField } = field;
+            return (
+              <div className="flex items-center gap-2">
+                <SideLabel label="Is permanent invitation">
+                  <Checkbox
+                    checked={value}
+                    onCheckedChange={(checked) => onChange(checked === true)}
+                    {...restField}
+                  />
+                </SideLabel>
+                <Tooltip tooltip="Permanent invitations are not deleted after the first enrollment, so the invitation code can be reused to enroll multiple patients.">
                   <InfoButton />
                 </Tooltip>
               </div>

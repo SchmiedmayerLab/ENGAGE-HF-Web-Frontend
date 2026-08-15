@@ -1,17 +1,17 @@
 //
-// This source file is part of the Stanford Biodesign Digital Health ENGAGE-HF open-source project
+// This source file is part of the ENGAGE-HF Web Frontend open-source project
 //
 // SPDX-FileCopyrightText: 2023 Stanford University and the project authors (see CONTRIBUTORS.md)
 //
 // SPDX-License-Identifier: MIT
 //
 
-import { UserType } from "@stanfordbdhg/engagehf-models";
+import { UserType } from "@schmiedmayerlab/engagehf-models";
 import {
   DataTable,
   type DataTableProps,
-} from "@stanfordspezi/spezi-web-design-system/components/DataTable";
-import { type RequiredSome } from "@stanfordspezi/spezi-web-design-system/utils/misc";
+} from "@schmiedmayerlab/grove-design-system/components/DataTable";
+import { type RequiredSome } from "@schmiedmayerlab/grove-design-system/utils/misc";
 import { createColumnHelper } from "@tanstack/table-core";
 import { Check } from "lucide-react";
 import { useMemo } from "react";
@@ -43,8 +43,10 @@ const columns = [
   }),
 ];
 
-interface PatientsDataTableProps
-  extends RequiredSome<DataTableProps<Patient>, "data"> {}
+interface PatientsDataTableProps extends RequiredSome<
+  DataTableProps<Patient>,
+  "data"
+> {}
 
 export const PatientsTable = ({ data, ...props }: PatientsDataTableProps) => {
   const navigateOrOpen = useNavigateOrOpen();
