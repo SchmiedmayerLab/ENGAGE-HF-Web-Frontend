@@ -43,6 +43,7 @@ export const getPatientFormSchema = (isEmailRequired: boolean) =>
     clinician: z.string().min(1, "Clinician is required"),
     dateOfBirth: z.date().optional(),
     selfManaged: z.boolean(),
+    permanent: z.boolean(),
     providerName: z
       .string()
       .nullable()
@@ -105,6 +106,7 @@ export const PatientForm = ({
         user?.dateOfBirth ? parseDateOfBirth(user.dateOfBirth) : undefined,
       providerName: user?.providerName ?? "",
       selfManaged: user?.selfManaged ?? false,
+      permanent: false,
     },
   });
 
@@ -203,6 +205,29 @@ export const PatientForm = ({
                   />
                 </SideLabel>
                 <Tooltip tooltip="This feature allows patients to enter their own medication and laboratory value updates.">
+                  <InfoButton />
+                </Tooltip>
+              </div>
+            );
+          }}
+        />
+      )}
+      {!isEdit && (
+        <Field
+          control={form.control}
+          name="permanent"
+          render={({ field }) => {
+            const { value, onChange, ...restField } = field;
+            return (
+              <div className="flex items-center gap-2">
+                <SideLabel label="Is permanent invitation">
+                  <Checkbox
+                    checked={value}
+                    onCheckedChange={(checked) => onChange(checked === true)}
+                    {...restField}
+                  />
+                </SideLabel>
+                <Tooltip tooltip="Permanent invitations are not deleted after the first enrollment, so the invitation code can be reused to enroll multiple patients.">
                   <InfoButton />
                 </Tooltip>
               </div>

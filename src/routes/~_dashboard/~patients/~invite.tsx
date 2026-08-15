@@ -45,6 +45,7 @@ const InvitePatientPage = () => {
         providerName: form.providerName,
         selfManaged: form.selfManaged,
       },
+      permanent: form.permanent,
     });
     toast.success("Patient has been successfully invited!");
     await navigate({
