@@ -192,6 +192,7 @@ const PatientPage = () => {
   };
 
   const userName = getUserName(authUser) ?? "";
+  const isPermanentInvitation = info.isInvitation && info.permanent;
 
   return (
     <DashboardLayout
@@ -225,20 +226,26 @@ const PatientPage = () => {
           <TabsTrigger value={PatientPageTab.information}>
             Information
           </TabsTrigger>
-          <TabsTrigger value={PatientPageTab.notifications}>
-            Notifications
-          </TabsTrigger>
-          <TabsTrigger value={PatientPageTab.medications}>
-            Medications
-          </TabsTrigger>
-          <TabsTrigger value={PatientPageTab.allergies}>Allergies</TabsTrigger>
-          <TabsTrigger value={PatientPageTab.labs}>Labs</TabsTrigger>
-          <TabsTrigger value={PatientPageTab.appointments}>
-            Appointments
-          </TabsTrigger>
-          <TabsTrigger value={PatientPageTab.measurements}>
-            Measurements
-          </TabsTrigger>
+          {!isPermanentInvitation && (
+            <>
+              <TabsTrigger value={PatientPageTab.notifications}>
+                Notifications
+              </TabsTrigger>
+              <TabsTrigger value={PatientPageTab.medications}>
+                Medications
+              </TabsTrigger>
+              <TabsTrigger value={PatientPageTab.allergies}>
+                Allergies
+              </TabsTrigger>
+              <TabsTrigger value={PatientPageTab.labs}>Labs</TabsTrigger>
+              <TabsTrigger value={PatientPageTab.appointments}>
+                Appointments
+              </TabsTrigger>
+              <TabsTrigger value={PatientPageTab.measurements}>
+                Measurements
+              </TabsTrigger>
+            </>
+          )}
         </TabsList>
         <TabsContent value={PatientPageTab.information}>
           <div className="flex flex-col gap-6 xl:flex-row">
@@ -248,34 +255,39 @@ const PatientPage = () => {
               userInfo={authUser}
               onSubmit={updatePatient}
               resourceType={resourceType}
+              isPermanentInvitation={isPermanentInvitation}
               {...formProps}
             />
           </div>
         </TabsContent>
-        <TabsContent value={PatientPageTab.notifications}>
-          <Notifications userId={userId} />
-        </TabsContent>
-        <TabsContent value={PatientPageTab.medications}>
-          <Medications
-            {...medications}
-            onSave={saveMedications}
-            defaultValues={{
-              medications: userMedications,
-            }}
-          />
-        </TabsContent>
-        <TabsContent value={PatientPageTab.allergies}>
-          <Allergies {...medications} {...allergiesData} />
-        </TabsContent>
-        <TabsContent value={PatientPageTab.labs}>
-          <Labs {...labsData} />
-        </TabsContent>
-        <TabsContent value={PatientPageTab.appointments}>
-          <Appointments {...appointmentsData} />
-        </TabsContent>
-        <TabsContent value={PatientPageTab.measurements}>
-          <Measurements {...measurementsData} />
-        </TabsContent>
+        {!isPermanentInvitation && (
+          <>
+            <TabsContent value={PatientPageTab.notifications}>
+              <Notifications userId={userId} />
+            </TabsContent>
+            <TabsContent value={PatientPageTab.medications}>
+              <Medications
+                {...medications}
+                onSave={saveMedications}
+                defaultValues={{
+                  medications: userMedications,
+                }}
+              />
+            </TabsContent>
+            <TabsContent value={PatientPageTab.allergies}>
+              <Allergies {...medications} {...allergiesData} />
+            </TabsContent>
+            <TabsContent value={PatientPageTab.labs}>
+              <Labs {...labsData} />
+            </TabsContent>
+            <TabsContent value={PatientPageTab.appointments}>
+              <Appointments {...appointmentsData} />
+            </TabsContent>
+            <TabsContent value={PatientPageTab.measurements}>
+              <Measurements {...measurementsData} />
+            </TabsContent>
+          </>
+        )}
       </Tabs>
     </DashboardLayout>
   );

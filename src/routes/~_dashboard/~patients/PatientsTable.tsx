@@ -37,6 +37,10 @@ const columns = [
       return selfManaged ? <Check className="size-5" /> : "";
     },
   }),
+  columnHelper.accessor("permanent", {
+    header: "Permanent",
+    cell: (props) => (props.getValue() ? <Check className="size-5" /> : ""),
+  }),
   columnHelper.display({
     id: "actions",
     cell: (props) => <PatientMenu patient={props.row.original} />,
