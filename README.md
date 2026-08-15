@@ -27,7 +27,7 @@ The frontend allows providers and study coordinators to manage patients, enter m
 
 ## Stack
 
-The ENGAGE-HF Web Frontend repository contains a React application built with TypeScript, Vite and Firebase. It provides automated GitHub Actions, setups for code linting, testing & test coverage reports, docker deployments, a docker compose setup.
+The ENGAGE-HF Web Frontend repository contains a React application built with TypeScript, Vite and Firebase. It provides automated GitHub Actions, setups for code linting, testing & test coverage reports, and Firebase Hosting deployments.
 
 ## Getting started
 
@@ -88,19 +88,6 @@ npm run test:e2e
 ```
 
 The script boots the emulators, seeds them, starts the dev server, and signs in with the seeded debug users. Stop `npm run serve:seeded` first if it is running, because both use the same emulator ports.
-
-## Docker
-
-1. [Install Docker](https://docs.docker.com/get-docker/) on your machine.
-2. Build the image and run the docker compose setup: `docker compose -f docker-compose-development.yml up`.
-
-You can view the images you create with `docker images`.
-
-Open [http://localhost](http://localhost) with your browser to see the result. You can visit [http://localhost:8080](http://localhost:8080) to see the reverse proxy setup before the main application.
-
-The `docker-compose.yml` setup contains a production-ready setup using a reverse proxy.
-
-Every version of the application on the `main` branch is automatically packaged into docker images using the `main` tag. Every release is also published using the `latest` and respective version tags.
 
 ## Deployment
 

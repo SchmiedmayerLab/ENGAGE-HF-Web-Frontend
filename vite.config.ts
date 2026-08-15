@@ -12,7 +12,6 @@ import path from "node:path";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-import { viteEnvs } from "vite-envs";
 import { configDefaults } from "vitest/config";
 
 export default defineConfig({
@@ -36,11 +35,6 @@ export default defineConfig({
         "// @ts-nocheck",
         "// noinspection JSUnusedGlobalSymbols",
       ],
-    }),
-    viteEnvs({
-      declarationFile: path.resolve(__dirname, ".env.example"),
-      ambientModuleDeclarationFilePath: ({ appRootDirPath }) =>
-        path.join(appRootDirPath, "src", "vite-envs.d.ts"),
     }),
   ],
   resolve: {
