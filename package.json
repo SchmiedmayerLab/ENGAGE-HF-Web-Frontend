@@ -43,7 +43,7 @@
     "react": "^19",
     "react-dom": "^19",
     "use-debounce": "^10.1.0",
-    "uuid": "^13.0.0",
+    "uuid": "^14.0.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
